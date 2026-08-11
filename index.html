@@ -586,7 +586,262 @@
 
 <!-- YouTube player -->
 <div id="youtubePlayer"></div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+
+const songs = [
+
+    {
+        title: "Maine Pyaar Tumhi Se Kiya Hai",
+        artist: "Tips Official",
+        videoId: "YOUR_YOUTUBE_ID"
+    },
+
+    {
+        title: "Your Second Song",
+        artist: "Bus Driver Radio",
+        videoId: "YOUR_SECOND_VIDEO_ID"
+    },
+
+    {
+        title: "Your Third Song",
+        artist: "Bus Driver Radio",
+        videoId: "YOUR_THIRD_VIDEO_ID"
+    }
+
+];
+
+
+let currentSong = 0;
+
+let player;
+
+let isPlaying = false;
+
+
+/* CREATE YOUTUBE PLAYER */
+
+function onYouTubeIframeAPIReady() {
+
+    player = new YT.Player('youtubePlayer', {
+
+        height: '1',
+
+        width: '1',
+
+        videoId: songs[0].videoId,
+
+        playerVars: {
+            controls: 0,
+            modestbranding: 1,
+            rel: 0
+        },
+
+        events: {
+
+            onReady: function() {
+
+                loadSongInfo();
+
+                updateProgress();
+
+            },
+
+            onStateChange: function(event) {
+
+                if (event.data === YT.PlayerState.PLAYING) {
+
+                    isPlaying = true;
+
+                    document.getElementById("playButton").innerHTML = "❚❚";
+
+                }
+
+                else if (
+                    event.data === YT.PlayerState.PAUSED
+                ) {
+
+                    isPlaying = false;
+
+                    document.getElementById("playButton").innerHTML = "▶";
+
+                }
+
+                else if (
+                    event.data === YT.PlayerState.ENDED
+                ) {
+
+                    nextSong();
+
+                }
+
+            }
+
+        }
+
+    });
+
+}
+
+
+/* SONG INFORMATION */
+
+function loadSongInfo() {
+
+    const song = songs[currentSong];
+
+    document.getElementById("songTitle").innerText =
+        song.title;
+
+    document.getElementById("songArtist").innerText =
+        song.artist;
+
+    document.getElementById("songCover").src =
+        "https://i.ytimg.com/vi/"
+        + song.videoId
+        + "/hqdefault.jpg";
+
+}
+
+
+/* PLAY / PAUSE */
+
+function togglePlay() {
+
+    if (!player) return;
+
+    if (isPlaying) {
+
+        player.pauseVideo();
+
+    } else {
+
+        player.playVideo();
+
+    }
+
+}
+
+
+/* NEXT */
+
+function nextSong() {
+
+    currentSong++;
+
+    if (currentSong >= songs.length) {
+
+        currentSong = 0;
+
+    }
+
+    loadSong();
+
+}
+
+
+/* PREVIOUS */
+
+function previousSong() {
+
+    currentSong--;
+
+    if (currentSong < 0) {
+
+        currentSong = songs.length - 1;
+
+    }
+
+    loadSong();
+
+}
+
+
+/* LOAD SONG */
+
+function loadSong() {
+
+    const song = songs[currentSong];
+
+    loadSongInfo();
+
+    player.loadVideoById(song.videoId);
+
+}
+
+
+/* PROGRESS */
+
+function updateProgress() {
+
+    if (player && player.getDuration) {
+
+        const duration = player.getDuration();
+
+        const current = player.getCurrentTime();
+
+        if (duration > 0) {
+
+            const percent =
+                (current / duration) * 100;
+
+            document.getElementById("progress").value =
+                percent;
+
+            document.getElementById("currentTime").innerText =
+                formatTime(current);
+
+            document.getElementById("duration").innerText =
+                formatTime(duration);
+
+        }
+
+    }
+
+    setTimeout(updateProgress, 500);
+
+}
+
+
+/* SEEK */
+
+function seekSong(value) {
+
+    if (!player) return;
+
+    const duration = player.getDuration();
+
+    const newTime =
+        (value / 100) * duration;
+
+    player.seekTo(newTime, true);
+
+}
+
+
+/* TIME FORMAT */
+
+function formatTime(seconds) {
+
+    seconds = Math.floor(seconds);
+
+    const minutes =
+        Math.floor(seconds / 60);
+
+    const remaining =
+        seconds % 60;
+
+    return minutes + ":" +
+        (remaining < 10 ? "0" : "") +
+        remaining;
+
+}
+
+</script>
 <body>
+    
 
     <nav>
         <div class="logo">BUS DRIVER</div>
