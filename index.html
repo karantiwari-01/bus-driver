@@ -840,6 +840,282 @@ function formatTime(seconds) {
 }
 
 </script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+
+let player;
+let isPlaying = false;
+
+
+/* YOUR PLAYLIST */
+
+const playlistId =
+    "PLVeY0XJJSxJMh2rXK2Taby1v23kj3P5_N";
+
+
+/* CREATE YOUTUBE PLAYER */
+
+function onYouTubeIframeAPIReady() {
+
+    player = new YT.Player("youtubePlayer", {
+
+        height: "1",
+
+        width: "1",
+
+        playerVars: {
+
+            listType: "playlist",
+
+            list: playlistId,
+
+            controls: 0,
+
+            rel: 0,
+
+            modestbranding: 1
+
+        },
+
+        events: {
+
+            onReady: function () {
+
+                updateSongInfo();
+
+                updateProgress();
+
+            },
+
+            onStateChange: function (event) {
+
+                if (
+                    event.data ===
+                    YT.PlayerState.PLAYING
+                ) {
+
+                    isPlaying = true;
+
+                    document.getElementById(
+                        "playButton"
+                    ).innerHTML = "❚❚";
+
+                }
+
+
+                else if (
+                    event.data ===
+                    YT.PlayerState.PAUSED
+                ) {
+
+                    isPlaying = false;
+
+                    document.getElementById(
+                        "playButton"
+                    ).innerHTML = "▶";
+
+                }
+
+
+                else if (
+                    event.data ===
+                    YT.PlayerState.ENDED
+                ) {
+
+                    nextSong();
+
+                }
+
+            }
+
+        }
+
+    });
+
+}
+
+
+/* PLAY / PAUSE */
+
+function togglePlay() {
+
+    if (!player) return;
+
+
+    if (isPlaying) {
+
+        player.pauseVideo();
+
+    }
+
+    else {
+
+        player.playVideo();
+
+    }
+
+}
+
+
+/* NEXT SONG */
+
+function nextSong() {
+
+    if (!player) return;
+
+    player.nextVideo();
+
+}
+
+
+/* PREVIOUS SONG */
+
+function previousSong() {
+
+    if (!player) return;
+
+    player.previousVideo();
+
+}
+
+
+/* SONG INFORMATION */
+
+function updateSongInfo() {
+
+    if (!player) return;
+
+
+    const videoData =
+        player.getVideoData();
+
+
+    if (videoData) {
+
+        document.getElementById(
+            "songTitle"
+        ).innerText =
+            videoData.title || "Bus Driver Radio";
+
+
+        if (videoData.video_id) {
+
+            document.getElementById(
+                "songCover"
+            ).src =
+                "https://i.ytimg.com/vi/"
+                + videoData.video_id
+                + "/hqdefault.jpg";
+
+        }
+
+    }
+
+}
+
+
+/* PROGRESS */
+
+function updateProgress() {
+
+    if (
+        player &&
+        typeof player.getDuration === "function"
+    ) {
+
+        const duration =
+            player.getDuration();
+
+        const current =
+            player.getCurrentTime();
+
+
+        if (duration > 0) {
+
+            const percentage =
+                (current / duration) * 100;
+
+
+            document.getElementById(
+                "progress"
+            ).value = percentage;
+
+
+            document.getElementById(
+                "currentTime"
+            ).innerText =
+                formatTime(current);
+
+
+            document.getElementById(
+                "duration"
+            ).innerText =
+                formatTime(duration);
+
+        }
+
+    }
+
+
+    updateSongInfo();
+
+
+    setTimeout(
+        updateProgress,
+        500
+    );
+
+}
+
+
+/* SEEK */
+
+function seekSong(value) {
+
+    if (!player) return;
+
+
+    const duration =
+        player.getDuration();
+
+
+    const newTime =
+        (value / 100) * duration;
+
+
+    player.seekTo(
+        newTime,
+        true
+    );
+
+}
+
+
+/* TIME FORMAT */
+
+function formatTime(seconds) {
+
+    seconds =
+        Math.floor(seconds);
+
+
+    const minutes =
+        Math.floor(seconds / 60);
+
+
+    const remaining =
+        seconds % 60;
+
+
+    return minutes +
+        ":" +
+        (remaining < 10 ? "0" : "") +
+        remaining;
+
+}
+
+</script>
 <body>
     
 
