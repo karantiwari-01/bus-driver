@@ -7,6 +7,77 @@
     <title>BUS DRIVER | Classic Journey</title>
 
     <style>
+        <!-- BUS DRIVER MUSIC PLAYER -->
+
+<div class="music-bar">
+
+    <div class="song-info">
+
+        <img
+            id="songCover"
+            src="https://i.ytimg.com/vi/YnYHfIRjhGE/hqdefault.jpg"
+            alt="Song Cover"
+        >
+
+        <div class="song-details">
+
+            <div class="song-title" id="songTitle">
+                Bus Driver Radio
+            </div>
+
+            <div class="song-artist">
+                YouTube Playlist
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="music-controls">
+
+        <button onclick="previousSong()" title="Previous">
+            ◀
+        </button>
+
+        <button
+            id="playButton"
+            class="play-button"
+            onclick="togglePlay()"
+            title="Play">
+            ▶
+        </button>
+
+        <button onclick="nextSong()" title="Next">
+            ▶
+        </button>
+
+    </div>
+
+
+    <div class="progress-area">
+
+        <span id="currentTime">0:00</span>
+
+        <input
+            type="range"
+            id="progress"
+            min="0"
+            max="100"
+            value="0"
+            oninput="seekSong(this.value)"
+        >
+
+        <span id="duration">0:00</span>
+
+    </div>
+
+</div>
+
+
+<!-- YouTube API Player -->
+
+<div id="youtubePlayer"></div>
         /* =================================
    FLOATING MUSIC PLAYER
 ================================= */
