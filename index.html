@@ -289,7 +289,73 @@
         }
     </style>
 </head>
+<!-- FLOATING MUSIC PLAYER -->
+<div class="music-bar" id="musicBar">
 
+    <div class="song-info">
+
+        <img
+            id="songCover"
+            src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg"
+            alt="Song Cover"
+        >
+
+        <div class="song-details">
+            <div class="song-title" id="songTitle">
+                Your Song Name
+            </div>
+
+            <div class="song-artist" id="songArtist">
+                Bus Driver Radio
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="music-controls">
+
+        <button onclick="previousSong()" title="Previous">
+            ◀
+        </button>
+
+        <button
+            class="play-button"
+            onclick="togglePlay()"
+            id="playButton"
+            title="Play">
+            ▶
+        </button>
+
+        <button onclick="nextSong()" title="Next">
+            ▶
+        </button>
+
+    </div>
+
+
+    <div class="progress-area">
+
+        <span id="currentTime">0:00</span>
+
+        <input
+            type="range"
+            id="progress"
+            value="0"
+            min="0"
+            max="100"
+            oninput="seekSong(this.value)"
+        >
+
+        <span id="duration">0:00</span>
+
+    </div>
+
+</div>
+
+
+<!-- YouTube player -->
+<div id="youtubePlayer"></div>
 <body>
 
     <nav>
