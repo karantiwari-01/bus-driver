@@ -301,54 +301,44 @@
 
 
     <!-- MUSIC -->
-    <section id="music">
+   <section id="music">
 
-        <div class="section-title">
-            MUSIC
+    <div class="section-title">
+        THE BUS RADIO
+    </div>
+
+    <div class="line"></div>
+
+    <div class="music-player">
+
+        <div class="player-header">
+            <span class="radio-dot"></span>
+            NOW PLAYING
         </div>
 
-        <div class="line"></div>
+        <h2>BUS DRIVER</h2>
 
-        <div class="music-box">
+        <p class="player-description">
+            Songs for every journey.
+        </p>
 
-            <h3>NOW PLAYING</h3>
+        <!-- SPOTIFY PLAYLIST -->
+        <div class="spotify-player">
 
-            <p>
-                Choose a song from the playlist below.
-            </p>
-
-            <!-- YouTube player will go here -->
-            <div id="player">
-                <p>YouTube / Spotify player coming soon...</p>
-            </div>
-
-        </div>
-
-
-        <div class="playlist">
-
-            <div class="song">
-                <span>01 — Your First Song</span>
-                <button onclick="playSong('SONG_ID_1')">
-                    ▶ PLAY
-                </button>
-            </div>
-
-            <div class="song">
-                <span>02 — Your Second Song</span>
-                <button onclick="playSong('SONG_ID_2')">
-                    ▶ PLAY
-                </button>
-            </div>
-
-            <div class="song">
-                <span>03 — Your Third Song</span>
-                <button onclick="playSong('SONG_ID_3')">
-                    ▶ PLAY
-                </button>
-            </div>
+            <iframe
+                src="https://open.spotify.com/embed/playlist/YOUR_PLAYLIST_ID?utm_source=generator&theme=0"
+                width="100%"
+                height="500"
+                frameborder="0"
+                allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+            </iframe>
 
         </div>
+
+    </div>
+
+</section>
 
     </section>
 
