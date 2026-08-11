@@ -56,18 +56,27 @@
         }
 
         /* HERO */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 120px 20px 60px;
-            background:
-                linear-gradient(rgba(20,15,10,.72), rgba(20,15,10,.9)),
-                radial-gradient(circle at center, #665039, #17130f 65%);
-        }
+       .hero {
+    min-height: 100vh;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    padding: 120px 20px 60px;
+
+    background:
+        linear-gradient(
+            rgba(15, 10, 5, 0.45),
+            rgba(15, 10, 5, 0.70)
+        ),
+        url("bus.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
         .hero-content {
             max-width: 900px;
         }
