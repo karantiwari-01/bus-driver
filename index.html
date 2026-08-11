@@ -1,10 +1,383 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Bus Driver</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BUS DRIVER | Classic Journey</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #17130f;
+            color: #eee2c8;
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(20, 16, 12, 0.92);
+            border-bottom: 1px solid #80653d;
+        }
+
+        .logo {
+            font-size: 25px;
+            letter-spacing: 5px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: #eee2c8;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        nav a:hover {
+            color: #c59b5c;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px 60px;
+            background:
+                linear-gradient(rgba(20,15,10,.72), rgba(20,15,10,.9)),
+                radial-gradient(circle at center, #665039, #17130f 65%);
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .small-title {
+            color: #c59b5c;
+            letter-spacing: 6px;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: clamp(60px, 12vw, 150px);
+            letter-spacing: 12px;
+            line-height: .9;
+            text-shadow: 5px 5px 0 #392b1c;
+        }
+
+        .hero p {
+            margin: 30px auto;
+            max-width: 600px;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #cdbd9d;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 35px;
+            border: 1px solid #c59b5c;
+            color: #eee2c8;
+            text-decoration: none;
+            letter-spacing: 3px;
+            transition: .3s;
+        }
+
+        .button:hover {
+            background: #c59b5c;
+            color: #17130f;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            letter-spacing: 5px;
+            margin-bottom: 15px;
+        }
+
+        .line {
+            width: 70px;
+            height: 2px;
+            background: #c59b5c;
+            margin: 0 auto 55px;
+        }
+
+        /* ABOUT */
+        .about {
+            text-align: center;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .about p {
+            color: #cdbd9d;
+            line-height: 2;
+            font-size: 17px;
+        }
+
+        /* MUSIC */
+        .music-box {
+            max-width: 700px;
+            margin: auto;
+            border: 1px solid #80653d;
+            padding: 35px;
+            background: #211b15;
+            text-align: center;
+        }
+
+        .music-box h3 {
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        .music-box p {
+            color: #a99a7f;
+            margin-bottom: 25px;
+        }
+
+        /* PLAYLIST */
+        .playlist {
+            max-width: 700px;
+            margin: 40px auto 0;
+        }
+
+        .song {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px;
+            border-bottom: 1px solid #493b29;
+        }
+
+        .song button {
+            background: none;
+            border: 1px solid #80653d;
+            color: #eee2c8;
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+
+        .song button:hover {
+            background: #c59b5c;
+            color: #17130f;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            border-top: 1px solid #493b29;
+            color: #8f826d;
+        }
+
+        footer strong {
+            color: #eee2c8;
+            letter-spacing: 3px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 700px) {
+
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav a {
+                display: none;
+            }
+
+            h1 {
+                letter-spacing: 5px;
+            }
+
+            section {
+                padding: 80px 6%;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .music-box {
+                padding: 25px 15px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>BUS DRIVER</h1>
-    <p>Welcome to Bus Driver!</p>
+
+    <nav>
+        <div class="logo">BUS DRIVER</div>
+
+        <div>
+            <a href="#home">HOME</a>
+            <a href="#about">ABOUT</a>
+            <a href="#music">MUSIC</a>
+        </div>
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="small-title">
+                THE JOURNEY BEGINS
+            </div>
+
+            <h1>BUS<br>DRIVER</h1>
+
+            <p>
+                Roads, stories, music and memories.
+                Every journey has a story worth remembering.
+            </p>
+
+            <a href="#music" class="button">
+                LISTEN NOW
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section id="about">
+
+        <div class="section-title">
+            OUR JOURNEY
+        </div>
+
+        <div class="line"></div>
+
+        <div class="about">
+
+            <p>
+                Welcome to Bus Driver.
+                A classic space for music, journeys and memories.
+                Turn up the music, sit back and enjoy the ride.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- MUSIC -->
+    <section id="music">
+
+        <div class="section-title">
+            MUSIC
+        </div>
+
+        <div class="line"></div>
+
+        <div class="music-box">
+
+            <h3>NOW PLAYING</h3>
+
+            <p>
+                Choose a song from the playlist below.
+            </p>
+
+            <!-- YouTube player will go here -->
+            <div id="player">
+                <p>YouTube / Spotify player coming soon...</p>
+            </div>
+
+        </div>
+
+
+        <div class="playlist">
+
+            <div class="song">
+                <span>01 — Your First Song</span>
+                <button onclick="playSong('SONG_ID_1')">
+                    ▶ PLAY
+                </button>
+            </div>
+
+            <div class="song">
+                <span>02 — Your Second Song</span>
+                <button onclick="playSong('SONG_ID_2')">
+                    ▶ PLAY
+                </button>
+            </div>
+
+            <div class="song">
+                <span>03 — Your Third Song</span>
+                <button onclick="playSong('SONG_ID_3')">
+                    ▶ PLAY
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <strong>BUS DRIVER</strong>
+
+        <br><br>
+
+        © 2026 Bus Driver — All Rights Reserved
+
+    </footer>
+
+
+    <script>
+
+        function playSong(id) {
+
+            if (id.startsWith("SONG_ID")) {
+                alert("Add your YouTube video ID first!");
+                return;
+            }
+
+            document.getElementById("player").innerHTML = `
+                <iframe
+                    width="100%"
+                    height="315"
+                    src="https://www.youtube.com/embed/${id}"
+                    title="YouTube player"
+                    frameborder="0"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen>
+                </iframe>
+            `;
+        }
+
+    </script>
+
 </body>
 </html>
