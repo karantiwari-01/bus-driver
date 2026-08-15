@@ -18,7 +18,7 @@ rel="stylesheet"
 <style>
 
 /* =========================================================
-   RESET
+   RESET — COMPLETELY NO SCROLL
 ========================================================= */
 
 * {
@@ -27,32 +27,48 @@ rel="stylesheet"
     box-sizing: border-box;
 }
 
-html {
-    width: 100%;
-    min-height: 100%;
-    scroll-behavior: smooth;
-}
-
+html,
 body {
+
     width: 100%;
-    min-height: 100vh;
-    overflow-x: hidden;
-    overflow-y: auto;
+    height: 100%;
+
+    min-height: 100%;
+
+    overflow: hidden;
+
+    position: fixed;
+
+    inset: 0;
+
+    overscroll-behavior: none;
+
+    touch-action: none;
+
     background: #111;
+
     color: white;
+
     font-family: Arial, sans-serif;
 }
 
 
 /* =========================================================
-   MAIN PAGE
+   MAIN SCREEN
 ========================================================= */
 
 .hero {
-    position: relative;
-    width: 100%;
-    min-height: 250vh;
-    overflow: visible;
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100vw;
+
+    height: 100vh;
+
+    overflow: hidden;
+
     isolation: isolate;
 }
 
@@ -70,13 +86,16 @@ body {
     inset: 0;
 
     width: 100vw;
+
     height: 100vh;
 
     background-image:
+
         linear-gradient(
             rgba(10, 7, 4, 0.04),
             rgba(10, 7, 4, 0.20)
         ),
+
         url("bg.png");
 
     background-size: cover;
@@ -92,7 +111,7 @@ body {
 
 
 /* =========================================================
-   BACKGROUND VIGNETTE
+   VIGNETTE
 ========================================================= */
 
 .hero::after {
@@ -104,6 +123,7 @@ body {
     inset: 0;
 
     width: 100vw;
+
     height: 100vh;
 
     background:
@@ -130,6 +150,7 @@ body {
     inset: -50%;
 
     width: 200%;
+
     height: 200%;
 
     z-index: 40;
@@ -144,6 +165,7 @@ body {
     animation:
         grainMove .2s steps(2) infinite;
 }
+
 
 @keyframes grainMove {
 
@@ -170,7 +192,7 @@ body {
 
 
 /* =========================================================
-   TOP BAR
+   TOP BAR — COMPLETELY FIXED
 ========================================================= */
 
 .top-bar {
@@ -182,7 +204,10 @@ body {
     top: 27px;
 
     left: 28px;
+
     right: 28px;
+
+    height: 30px;
 
     display: flex;
 
@@ -196,7 +221,9 @@ body {
 }
 
 
-/* CLOCK */
+/* =========================================================
+   CLOCK
+========================================================= */
 
 .time {
 
@@ -231,9 +258,11 @@ body {
         0 2px 8px rgba(0,0,0,.7);
 }
 
+
 .online-dot {
 
     width: 11px;
+
     height: 11px;
 
     border-radius: 50%;
@@ -241,12 +270,15 @@ body {
     background: #21e890;
 
     box-shadow:
+
         0 0 8px #21e890,
+
         0 0 18px rgba(33,232,144,.55);
 
     animation:
         onlinePulse 2s infinite;
 }
+
 
 @keyframes onlinePulse {
 
@@ -282,6 +314,7 @@ body {
     pointer-events: auto;
 }
 
+
 .music-links a {
 
     color: white;
@@ -302,6 +335,7 @@ body {
     transition: .25s ease;
 }
 
+
 .music-links a:hover {
 
     transform: translateY(-2px);
@@ -312,7 +346,7 @@ body {
 
 /* =========================================================
    RAJA HINDUSTANI
-   FIXED + ONLY 1PX SCROLL MOVEMENT
+   COMPLETELY FIXED
 ========================================================= */
 
 .title-container {
@@ -327,20 +361,11 @@ body {
 
     width: 100%;
 
-    /*
-       JavaScript changes only the translateY
-       by maximum 1px.
-    */
-
-    transform:
-        translateX(-50%)
-        translateY(0px);
+    transform: translateX(-50%);
 
     text-align: center;
 
     pointer-events: none;
-
-    will-change: transform;
 }
 
 
@@ -381,36 +406,22 @@ body {
 
 
 /* =========================================================
-   SCROLL AREA
-========================================================= */
-
-.page-content {
-
-    width: 100%;
-
-    height: 250vh;
-
-    pointer-events: none;
-}
-
-
-/* =========================================================
-   YOUTUBE PLAYER
+   HIDDEN YOUTUBE PLAYER
 ========================================================= */
 
 #youtube-player {
 
     position: fixed;
 
-    width: 2px;
+    width: 1px;
 
-    height: 2px;
+    height: 1px;
 
-    left: -20px;
+    left: -100px;
 
-    bottom: -20px;
+    top: -100px;
 
-    opacity: .01;
+    opacity: 0;
 
     pointer-events: none;
 }
@@ -418,7 +429,7 @@ body {
 
 /* =========================================================
    MUSIC PLAYER
-   HIGHER + TRANSPARENT + ONLY 1PX SCROLL MOVEMENT
+   COMPLETELY FIXED
 ========================================================= */
 
 .player {
@@ -429,20 +440,9 @@ body {
 
     left: 50%;
 
-    /*
-       Slightly higher
-    */
-
     bottom: 55px;
 
-    /*
-       JavaScript changes only translateY
-       by maximum 1px.
-    */
-
-    transform:
-        translateX(-50%)
-        translateY(0px);
+    transform: translateX(-50%);
 
     width:
         min(500px, calc(100% - 30px));
@@ -456,7 +456,7 @@ body {
 
 
     /* =====================================================
-       VINTAGE INDIAN TAXI GLASS COLOR
+       TRANSPARENT VINTAGE TAXI COLOR
     ===================================================== */
 
     background:
@@ -499,8 +499,6 @@ body {
     align-items: center;
 
     gap: 11px;
-
-    will-change: transform;
 }
 
 
@@ -534,11 +532,13 @@ body {
         paused;
 }
 
+
 .album.playing {
 
     animation-play-state:
         running;
 }
+
 
 .album img {
 
@@ -548,6 +548,7 @@ body {
 
     object-fit: cover;
 }
+
 
 @keyframes albumRotate {
 
@@ -572,6 +573,7 @@ body {
     min-width: 0;
 }
 
+
 .song-name {
 
     font-size: 14px;
@@ -586,6 +588,7 @@ body {
 
     margin-bottom: 3px;
 }
+
 
 .artist {
 
@@ -622,6 +625,7 @@ body {
 
     overflow: hidden;
 }
+
 
 .progress {
 
@@ -665,6 +669,7 @@ body {
     gap: 3px;
 }
 
+
 .control {
 
     width: 27px;
@@ -689,6 +694,7 @@ body {
 
     transition: .2s;
 }
+
 
 .control:hover {
 
@@ -749,6 +755,7 @@ body {
         visibility .7s ease;
 }
 
+
 .start-screen.hidden {
 
     opacity: 0;
@@ -758,15 +765,12 @@ body {
     pointer-events: none;
 }
 
+
 .start-content {
 
     text-align: center;
-
-    animation:
-        startFloat 2.2s
-        ease-in-out
-        infinite alternate;
 }
+
 
 .start-content h2 {
 
@@ -792,6 +796,7 @@ body {
     margin-bottom: 18px;
 }
 
+
 .start-content p {
 
     font-size: 14px;
@@ -800,6 +805,7 @@ body {
 
     margin-bottom: 28px;
 }
+
 
 .enter-button {
 
@@ -829,6 +835,7 @@ body {
     transition: .3s;
 }
 
+
 .enter-button:hover {
 
     background: white;
@@ -838,27 +845,12 @@ body {
     transform: scale(1.05);
 }
 
-@keyframes startFloat {
-
-    from {
-        transform: translateY(0);
-    }
-
-    to {
-        transform: translateY(-8px);
-    }
-}
-
 
 /* =========================================================
    MOBILE
 ========================================================= */
 
 @media (max-width: 650px) {
-
-    .hero {
-        min-height: 250vh;
-    }
 
     .top-bar {
 
@@ -869,25 +861,36 @@ body {
         right: 17px;
     }
 
+
     .time {
+
         font-size: 13px;
     }
 
+
     .online {
+
         font-size: 11px;
     }
 
+
     .music-links {
+
         gap: 9px;
     }
 
+
     .music-links span {
+
         display: none;
     }
 
+
     .title-container {
+
         top: 38px;
     }
+
 
     .title {
 
@@ -907,8 +910,6 @@ body {
     }
 
 
-    /* MOBILE MUSIC PLAYER */
-
     .player {
 
         width:
@@ -926,6 +927,7 @@ body {
         gap: 8px;
     }
 
+
     .album {
 
         width: 50px;
@@ -933,17 +935,24 @@ body {
         height: 50px;
     }
 
+
     .song-name {
+
         font-size: 12px;
     }
 
+
     .artist {
+
         font-size: 9px;
     }
 
+
     .controls {
+
         gap: 0;
     }
+
 
     .control {
 
@@ -951,6 +960,7 @@ body {
 
         height: 28px;
     }
+
 
     .play-button {
 
@@ -981,13 +991,9 @@ id="startScreen"
     <div class="start-content">
 
         <h2>
-
             राजा
-
             <br>
-
             हिन्दुस्तानी
-
         </h2>
 
         <p>
@@ -998,9 +1004,7 @@ id="startScreen"
         class="enter-button"
         id="enterButton"
         >
-
             ▶ ENTER EXPERIENCE
-
         </button>
 
     </div>
@@ -1009,7 +1013,7 @@ id="startScreen"
 
 
 <!-- =========================================================
-     MAIN WEBSITE
+     MAIN SCREEN
 ========================================================= -->
 
 <main class="hero">
@@ -1023,6 +1027,7 @@ id="startScreen"
     ====================================================== -->
 
     <div class="top-bar">
+
 
         <div
         class="time"
@@ -1050,6 +1055,7 @@ id="startScreen"
 
 
         <div class="music-links">
+
 
             <a
             href="https://open.spotify.com/"
@@ -1084,7 +1090,7 @@ id="startScreen"
 
 
     <!-- =====================================================
-         RAJA HINDUSTANI
+         FIXED TITLE
     ====================================================== -->
 
     <div class="title-container">
@@ -1103,21 +1109,14 @@ id="startScreen"
 
 
     <!-- =====================================================
-         SCROLL AREA
-    ====================================================== -->
-
-    <div class="page-content"></div>
-
-
-    <!-- =====================================================
-         YOUTUBE
+         HIDDEN YOUTUBE PLAYER
     ====================================================== -->
 
     <div id="youtube-player"></div>
 
 
     <!-- =====================================================
-         MUSIC PLAYER
+         FIXED MUSIC PLAYER
     ====================================================== -->
 
     <div class="player">
@@ -1291,7 +1290,7 @@ document.getElementById("duration");
 
 
 /* =========================================================
-   YOUTUBE API READY
+   YOUTUBE API
 ========================================================= */
 
 function onYouTubeIframeAPIReady() {
@@ -1344,7 +1343,7 @@ function onYouTubeIframeAPIReady() {
 
 
 /* =========================================================
-   PLAYER READY
+   READY
 ========================================================= */
 
 function onPlayerReady() {
@@ -1372,9 +1371,12 @@ function onPlayerStateChange(event) {
 
         isPlaying = true;
 
-        playButton.textContent = "❚❚";
+        playButton.textContent =
+            "❚❚";
 
-        album.classList.add("playing");
+        album.classList.add(
+            "playing"
+        );
 
         updateSongInformation();
 
@@ -1387,9 +1389,12 @@ function onPlayerStateChange(event) {
 
         isPlaying = false;
 
-        playButton.textContent = "▶";
+        playButton.textContent =
+            "▶";
 
-        album.classList.remove("playing");
+        album.classList.remove(
+            "playing"
+        );
 
     }
 
@@ -1400,9 +1405,12 @@ function onPlayerStateChange(event) {
 
         isPlaying = false;
 
-        playButton.textContent = "▶";
+        playButton.textContent =
+            "▶";
 
-        album.classList.remove("playing");
+        album.classList.remove(
+            "playing"
+        );
 
     }
 
@@ -1410,7 +1418,7 @@ function onPlayerStateChange(event) {
 
 
 /* =========================================================
-   YOUTUBE ERROR
+   ERROR
 ========================================================= */
 
 function onPlayerError(event) {
@@ -1431,7 +1439,9 @@ enterButton.addEventListener(
     "click",
     function() {
 
-        startScreen.classList.add("hidden");
+        startScreen.classList.add(
+            "hidden"
+        );
 
         if (
             playerReady &&
@@ -1442,9 +1452,12 @@ enterButton.addEventListener(
 
             isPlaying = true;
 
-            playButton.textContent = "❚❚";
+            playButton.textContent =
+                "❚❚";
 
-            album.classList.add("playing");
+            album.classList.add(
+                "playing"
+            );
 
         }
 
@@ -1464,7 +1477,9 @@ playButton.addEventListener(
             !playerReady ||
             !player
         ) {
+
             return;
+
         }
 
         if (isPlaying) {
@@ -1495,15 +1510,12 @@ nextButton.addEventListener(
             !playerReady ||
             !player
         ) {
+
             return;
+
         }
 
         player.nextVideo();
-
-        setTimeout(
-            updateSongInformation,
-            800
-        );
 
     }
 );
@@ -1521,15 +1533,12 @@ previousButton.addEventListener(
             !playerReady ||
             !player
         ) {
+
             return;
+
         }
 
         player.previousVideo();
-
-        setTimeout(
-            updateSongInformation,
-            800
-        );
 
     }
 );
@@ -1545,7 +1554,9 @@ function updateSongInformation() {
         !playerReady ||
         !player
     ) {
+
         return;
+
     }
 
     try {
@@ -1605,7 +1616,9 @@ setInterval(
             !playerReady ||
             !player
         ) {
+
             return;
+
         }
 
         try {
@@ -1617,7 +1630,9 @@ setInterval(
                 player.getCurrentTime();
 
             if (!total) {
+
                 return;
+
             }
 
             const percent =
@@ -1657,7 +1672,9 @@ progressContainer.addEventListener(
             !playerReady ||
             !player
         ) {
+
             return;
+
         }
 
         const width =
@@ -1670,7 +1687,9 @@ progressContainer.addEventListener(
             player.getDuration();
 
         if (!total) {
+
             return;
+
         }
 
         player.seekTo(
@@ -1692,7 +1711,9 @@ function formatTime(seconds) {
         !seconds ||
         isNaN(seconds)
     ) {
+
         return "0:00";
+
     }
 
     const minutes =
@@ -1717,7 +1738,8 @@ function formatTime(seconds) {
 
 function updateClock() {
 
-    const now = new Date();
+    const now =
+        new Date();
 
     let hours =
         now.getHours();
@@ -1751,7 +1773,7 @@ setInterval(
 
 
 /* =========================================================
-   ONLINE COUNTER
+   ONLINE COUNT
 ========================================================= */
 
 function updateOnline() {
@@ -1777,134 +1799,78 @@ setInterval(
 
 
 /* =========================================================
-   IMPORTANT:
-   TITLE + MUSIC PLAYER MOVE ONLY 1PX
-   WHEN SCROLLING
+   NO SCROLL
 ========================================================= */
 
-const fixedTitle =
-    document.querySelector(
-        ".title-container"
-    );
+/*
+   The website is intentionally locked.
 
-const musicPlayer =
-    document.querySelector(
-        ".player"
-    );
+   There is:
+   - NO vertical scrolling
+   - NO horizontal scrolling
+   - NO scroll movement
+   - NO scrollbar
+   - Background stays fixed
+   - Title stays fixed
+   - Music player stays fixed
+*/
 
+document.addEventListener(
+    "wheel",
+    function(event) {
 
-let lastScrollY =
-    window.scrollY;
-
-let titleOffset = 0;
-
-let playerOffset = 0;
-
-
-/* =========================================================
-   SCROLL EVENT
-========================================================= */
-
-window.addEventListener(
-    "scroll",
-    function() {
-
-        const currentScrollY =
-            window.scrollY;
-
-        const difference =
-            currentScrollY - lastScrollY;
-
-
-        /*
-           Scrolling DOWN
-           Move both elements 1px UP.
-        */
-
-        if (difference > 0) {
-
-            titleOffset = -1;
-
-            playerOffset = -1;
-
-        }
-
-
-        /*
-           Scrolling UP
-           Move both elements 1px DOWN.
-        */
-
-        else if (difference < 0) {
-
-            titleOffset = 1;
-
-            playerOffset = 1;
-
-        }
-
-
-        /*
-           Apply only 1px movement.
-        */
-
-        fixedTitle.style.transform =
-            `translateX(-50%) translateY(${titleOffset}px)`;
-
-
-        musicPlayer.style.transform =
-            `translateX(-50%) translateY(${playerOffset}px)`;
-
-
-        lastScrollY =
-            currentScrollY;
+        event.preventDefault();
 
     },
-
     {
-        passive: true
+        passive: false
     }
 );
 
 
-/* =========================================================
-   RESET THE 1PX OFFSET AFTER SCROLL STOPS
-========================================================= */
+document.addEventListener(
+    "touchmove",
+    function(event) {
 
-let scrollTimer;
-
-window.addEventListener(
-    "scroll",
-    function() {
-
-        clearTimeout(scrollTimer);
-
-        scrollTimer =
-            setTimeout(
-                function() {
-
-                    titleOffset = 0;
-
-                    playerOffset = 0;
-
-                    fixedTitle.style.transform =
-                        "translateX(-50%) translateY(0px)";
-
-                    musicPlayer.style.transform =
-                        "translateX(-50%) translateY(0px)";
-
-                },
-                120
-            );
+        event.preventDefault();
 
     },
     {
-        passive: true
+        passive: false
+    }
+);
+
+
+/* Prevent keyboard scrolling */
+
+window.addEventListener(
+    "keydown",
+    function(event) {
+
+        const keys = [
+            "ArrowUp",
+            "ArrowDown",
+            "PageUp",
+            "PageDown",
+            "Home",
+            "End",
+            " "
+        ];
+
+        if (
+            keys.includes(
+                event.key
+            )
+        ) {
+
+            event.preventDefault();
+
+        }
+
     }
 );
 
 </script>
 
 </body>
-
 </html>
