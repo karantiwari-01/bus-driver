@@ -17,10 +17,6 @@ rel="stylesheet"
 
 <style>
 
-/* =========================================================
-   RESET
-========================================================= */
-
 * {
     margin: 0;
     padding: 0;
@@ -29,53 +25,32 @@ rel="stylesheet"
 
 html,
 body {
-
     width: 100%;
     height: 100%;
-
     overflow: hidden !important;
-
     position: fixed;
-
     inset: 0;
-
     background: #111;
-
     overscroll-behavior: none;
-
     font-family: Arial, sans-serif;
 }
 
 
-/* =========================================================
-   MAIN
-========================================================= */
+/* =========================
+   BACKGROUND
+========================= */
 
 .hero {
-
     position: fixed;
-
     inset: 0;
-
     width: 100vw;
     height: 100vh;
-
     overflow: hidden;
-
-    isolation: isolate;
 }
 
-
-/* =========================================================
-   BACKGROUND — NEVER MOVES
-========================================================= */
-
 .background {
-
     position: fixed;
-
     inset: 0;
-
     width: 100vw;
     height: 100vh;
 
@@ -87,28 +62,16 @@ body {
         url("bg.png");
 
     background-size: cover;
-
     background-position: center center;
-
     background-repeat: no-repeat;
 
     z-index: -10;
-
     pointer-events: none;
 }
 
-
-/* =========================================================
-   DARK VIGNETTE
-========================================================= */
-
 .vignette {
-
     position: fixed;
-
     inset: 0;
-
-    pointer-events: none;
 
     background:
         radial-gradient(
@@ -117,76 +80,58 @@ body {
             rgba(0,0,0,.25) 100%
         );
 
+    pointer-events: none;
     z-index: -5;
 }
 
 
-/* =========================================================
+/* =========================
    TOP BAR
-========================================================= */
+========================= */
 
 .top-bar {
-
     position: fixed;
-
     z-index: 20;
 
     top: 27px;
-
     left: 28px;
-
     right: 28px;
 
     height: 30px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
     color: white;
-
     pointer-events: none;
 }
 
-
 .time {
-
     font-size: 16px;
-
     font-weight: 600;
 
     text-shadow:
         0 2px 8px rgba(0,0,0,.8);
 }
 
-
 .online {
-
     position: absolute;
-
     left: 50%;
-
     transform: translateX(-50%);
 
     display: flex;
-
     align-items: center;
-
     gap: 8px;
 
     font-size: 15px;
-
     font-weight: 600;
 
     text-shadow:
         0 2px 8px rgba(0,0,0,.8);
 }
 
-
 .online-dot {
-
     width: 11px;
     height: 11px;
 
@@ -198,33 +143,23 @@ body {
         0 0 10px #18e88a;
 }
 
-
 .music-links {
-
     display: flex;
-
     align-items: center;
-
     gap: 25px;
 
     pointer-events: auto;
 }
 
-
 .music-links a {
-
     color: white;
-
     text-decoration: none;
 
     font-size: 14px;
-
     font-weight: 600;
 
     display: flex;
-
     align-items: center;
-
     gap: 7px;
 
     text-shadow:
@@ -233,26 +168,21 @@ body {
     transition: .2s;
 }
 
-
 .music-links a:hover {
-
     opacity: .7;
-
 }
 
 
-/* =========================================================
-   TITLE WRAPPER
-========================================================= */
+/* =========================
+   TITLE
+========================= */
 
 .title-container {
-
     position: fixed;
 
     z-index: 15;
 
     top: 43px;
-
     left: 50%;
 
     width: 100%;
@@ -264,20 +194,12 @@ body {
 
     transform-origin: center center;
 
-    will-change:
-        transform;
+    will-change: transform;
 
     pointer-events: none;
-
 }
 
-
-/* =========================================================
-   RAJA HINDUSTANI
-========================================================= */
-
 .title {
-
     font-family:
         "Noto Serif Devanagari",
         serif;
@@ -296,24 +218,18 @@ body {
     color: #fff4d5;
 
     text-shadow:
-
         2px 2px 0 #4b351e,
-
         5px 5px 0 #4b351e,
-
         8px 8px 0 rgba(0,0,0,.45),
-
         0 12px 25px rgba(0,0,0,.5);
-
 }
 
 
-/* =========================================================
-   YOUTUBE PLAYER — HIDDEN
-========================================================= */
+/* =========================
+   HIDDEN YOUTUBE
+========================= */
 
 #youtube-player {
-
     position: fixed;
 
     width: 1px;
@@ -323,23 +239,20 @@ body {
     top: -100px;
 
     opacity: 0;
-
     pointer-events: none;
 }
 
 
-/* =========================================================
+/* =========================
    MUSIC PLAYER
-========================================================= */
+========================= */
 
 .player {
-
     position: fixed;
 
     z-index: 30;
 
     left: 50%;
-
     bottom: 55px;
 
     width:
@@ -354,11 +267,9 @@ body {
 
     transform-origin: center center;
 
-    will-change:
-        transform;
+    will-change: transform;
 
     display: flex;
-
     align-items: center;
 
     gap: 12px;
@@ -366,9 +277,6 @@ body {
     padding: 10px 14px 10px 10px;
 
     border-radius: 24px;
-
-
-    /* Transparent color taken from the warm background */
 
     background:
         linear-gradient(
@@ -378,20 +286,13 @@ body {
             rgba(176,70,49,.58)
         );
 
-
     border:
         1px solid
         rgba(255,220,180,.28);
 
-
     box-shadow:
-
-        0 12px 35px
-        rgba(0,0,0,.35),
-
-        inset 0 1px 1px
-        rgba(255,255,255,.16);
-
+        0 12px 35px rgba(0,0,0,.35),
+        inset 0 1px 1px rgba(255,255,255,.16);
 
     backdrop-filter:
         blur(8px)
@@ -403,14 +304,12 @@ body {
 }
 
 
-/* =========================================================
+/* =========================
    ALBUM
-========================================================= */
+========================= */
 
 .album {
-
     width: 68px;
-
     height: 68px;
 
     flex-shrink: 0;
@@ -427,68 +326,51 @@ body {
         0 4px 15px rgba(0,0,0,.4);
 }
 
-
 .album img {
-
     width: 100%;
     height: 100%;
-
     object-fit: cover;
 }
 
 
-/* =========================================================
+/* =========================
    SONG INFO
-========================================================= */
+========================= */
 
 .song-info {
-
     flex: 1;
-
     min-width: 0;
 }
 
-
 .song-name {
-
     font-size: 15px;
-
     font-weight: 700;
 
     white-space: nowrap;
-
     overflow: hidden;
-
     text-overflow: ellipsis;
 
     margin-bottom: 4px;
 }
 
-
 .artist {
-
     font-size: 12px;
-
     opacity: .72;
 
     margin-bottom: 8px;
 
     white-space: nowrap;
-
     overflow: hidden;
-
     text-overflow: ellipsis;
 }
 
 
-/* =========================================================
+/* =========================
    PROGRESS
-========================================================= */
+========================= */
 
 .progress-container {
-
     width: 100%;
-
     height: 4px;
 
     background:
@@ -501,11 +383,8 @@ body {
     cursor: pointer;
 }
 
-
 .progress {
-
     width: 0%;
-
     height: 100%;
 
     background: white;
@@ -513,39 +392,29 @@ body {
     border-radius: 20px;
 }
 
-
 .time-display {
-
     margin-top: 4px;
 
     font-size: 9px;
-
     opacity: .65;
 }
 
 
-/* =========================================================
+/* =========================
    CONTROLS
-========================================================= */
+========================= */
 
 .controls {
-
     display: flex;
-
     align-items: center;
-
     gap: 3px;
 }
 
-
 .control {
-
     width: 30px;
-
     height: 40px;
 
     border: none;
-
     background: transparent;
 
     color: white;
@@ -555,16 +424,14 @@ body {
     font-size: 13px;
 }
 
-
 .play-button {
-
     width: 52px;
-
     height: 52px;
 
     border-radius: 50%;
 
-    background: rgba(255,255,255,.96);
+    background:
+        rgba(255,255,255,.96);
 
     color: #3e2818;
 
@@ -575,22 +442,18 @@ body {
 }
 
 
-/* =========================================================
+/* =========================
    START SCREEN
-========================================================= */
+========================= */
 
 .start-screen {
-
     position: fixed;
-
     inset: 0;
 
     z-index: 100;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     background:
@@ -602,25 +465,17 @@ body {
         opacity .7s ease;
 }
 
-
 .start-screen.hidden {
-
     opacity: 0;
-
     pointer-events: none;
 }
 
-
 .start-content {
-
     text-align: center;
-
     color: white;
 }
 
-
 .start-content h2 {
-
     font-family:
         "Noto Serif Devanagari",
         serif;
@@ -633,29 +488,20 @@ body {
     color: #fff2d0;
 
     text-shadow:
-
         3px 3px 0 #49341f,
-
         6px 6px 0 rgba(0,0,0,.5);
 
     margin-bottom: 20px;
 }
 
-
 .start-content p {
-
     opacity: .75;
-
     font-size: 14px;
-
     margin-bottom: 25px;
 }
 
-
 .enter-button {
-
-    padding:
-        14px 30px;
+    padding: 14px 30px;
 
     border:
         1px solid
@@ -675,67 +521,43 @@ body {
     transition: .25s;
 }
 
-
 .enter-button:hover {
-
     background: white;
-
     color: #352416;
-
 }
 
 
-/* =========================================================
+/* =========================
    MOBILE
-========================================================= */
+========================= */
 
 @media(max-width:650px) {
 
     .top-bar {
-
         top: 17px;
-
         left: 17px;
-
         right: 17px;
-
     }
-
 
     .music-links {
-
         gap: 10px;
-
     }
-
 
     .music-links span {
-
         display: none;
-
     }
-
 
     .title-container {
-
         top: 42px;
-
     }
-
 
     .title {
-
         font-size: 61px;
-
         letter-spacing: -3px;
-
     }
 
-
     .player {
-
-        width:
-            calc(100% - 20px);
+        width: calc(100% - 20px);
 
         bottom: 25px;
 
@@ -744,41 +566,25 @@ body {
         border-radius: 18px;
 
         padding: 7px;
-
     }
-
 
     .album {
-
         width: 52px;
-
         height: 52px;
-
     }
-
 
     .song-name {
-
         font-size: 12px;
-
     }
-
 
     .artist {
-
         font-size: 9px;
-
     }
-
 
     .play-button {
-
         width: 42px;
-
         height: 42px;
-
     }
-
 }
 
 </style>
@@ -788,18 +594,14 @@ body {
 <body>
 
 
-<!-- =========================================================
-     FIXED BACKGROUND
-========================================================= -->
-
 <div class="background"></div>
 
 <div class="vignette"></div>
 
 
-<!-- =========================================================
+<!-- =========================
      START SCREEN
-========================================================= -->
+========================= -->
 
 <div
 class="start-screen"
@@ -830,204 +632,191 @@ id="startScreen"
 </div>
 
 
-<!-- =========================================================
-     MAIN
-========================================================= -->
-
 <main class="hero">
 
 
-    <!-- =====================================================
-         TOP BAR
-    ====================================================== -->
+<!-- =========================
+     TOP BAR
+========================= -->
 
-    <div class="top-bar">
+<div class="top-bar">
 
+    <div
+    class="time"
+    id="currentTime"
+    >
+        4:40 pm
+    </div>
+
+
+    <div class="online">
+
+        <span class="online-dot"></span>
+
+        <span>
+
+            <span id="onlineCount">
+                24
+            </span>
+
+            online
+
+        </span>
+
+    </div>
+
+
+    <div class="music-links">
+
+        <a
+        href="https://open.spotify.com/"
+        target="_blank"
+        >
+            ◉
+            <span>Spotify ↗</span>
+        </a>
+
+        <a
+        href="https://music.youtube.com/"
+        target="_blank"
+        >
+            ▶
+            <span>YT Music ↗</span>
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     RAJA HINDUSTANI
+========================= -->
+
+<div
+class="title-container"
+id="titleContainer"
+>
+
+    <h1 class="title">
+
+        राजा
+
+        <br>
+
+        हिन्दुस्तानी
+
+    </h1>
+
+</div>
+
+
+<!-- =========================
+     YOUTUBE PLAYER
+========================= -->
+
+<div id="youtube-player"></div>
+
+
+<!-- =========================
+     MUSIC PLAYER
+========================= -->
+
+<div
+class="player"
+id="musicPlayer"
+>
+
+    <div class="album">
+
+        <img
+        id="albumImage"
+        src="bg.png"
+        alt="Raja Hindustani"
+        >
+
+    </div>
+
+
+    <div class="song-info">
 
         <div
-        class="time"
-        id="currentTime"
+        class="song-name"
+        id="songName"
         >
-            4:40 pm
+            Raja Hindustani
         </div>
 
 
-        <div class="online">
+        <div
+        class="artist"
+        id="artistName"
+        >
+            YouTube Playlist
+        </div>
 
-            <span class="online-dot"></span>
 
-            <span>
+        <div
+        class="progress-container"
+        id="progressContainer"
+        >
 
-                <span id="onlineCount">
-                    24
-                </span>
+            <div
+            class="progress"
+            id="progress"
+            ></div>
 
-                online
+        </div>
 
+
+        <div class="time-display">
+
+            <span id="currentSongTime">
+                0:00
+            </span>
+
+            /
+
+            <span id="duration">
+                0:00
             </span>
 
         </div>
 
-
-        <div class="music-links">
-
-            <a
-            href="https://open.spotify.com/"
-            target="_blank"
-            >
-                ◉
-                <span>Spotify ↗</span>
-            </a>
-
-
-            <a
-            href="https://music.youtube.com/"
-            target="_blank"
-            >
-                ▶
-                <span>YT Music ↗</span>
-            </a>
-
-        </div>
-
     </div>
 
 
-    <!-- =====================================================
-         TITLE
-    ====================================================== -->
+    <div class="controls">
 
-    <div
-    class="title-container"
-    id="titleContainer"
-    >
-
-        <h1 class="title">
-
-            राजा
-
-            <br>
-
-            हिन्दुस्तानी
-
-        </h1>
-
-    </div>
+        <button
+        class="control"
+        id="previous"
+        >
+            |◀
+        </button>
 
 
-    <!-- =====================================================
-         YOUTUBE
-    ====================================================== -->
-
-    <div id="youtube-player"></div>
-
-
-    <!-- =====================================================
-         MUSIC PLAYER
-    ====================================================== -->
-
-    <div
-    class="player"
-    id="musicPlayer"
-    >
+        <button
+        class="play-button"
+        id="playButton"
+        >
+            ▶
+        </button>
 
 
-        <div class="album">
-
-            <img
-            id="albumImage"
-            src="bg.png"
-            alt="Raja Hindustani"
-            >
-
-        </div>
-
-
-        <div class="song-info">
-
-
-            <div
-            class="song-name"
-            id="songName"
-            >
-                Raja Hindustani
-            </div>
-
-
-            <div
-            class="artist"
-            id="artistName"
-            >
-                YouTube Playlist
-            </div>
-
-
-            <div
-            class="progress-container"
-            id="progressContainer"
-            >
-
-                <div
-                class="progress"
-                id="progress"
-                ></div>
-
-            </div>
-
-
-            <div class="time-display">
-
-                <span id="currentSongTime">
-                    0:00
-                </span>
-
-                /
-
-                <span id="duration">
-                    0:00
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <div class="controls">
-
-
-            <button
-            class="control"
-            id="previous"
-            >
-                |◀
-            </button>
-
-
-            <button
-            class="play-button"
-            id="playButton"
-            >
-                ▶
-            </button>
-
-
-            <button
-            class="control"
-            id="next"
-            >
-                ▶|
-            </button>
-
-        </div>
+        <button
+        class="control"
+        id="next"
+        >
+            ▶|
+        </button>
 
     </div>
+
+</div>
 
 </main>
 
-
-<!-- =========================================================
-     YOUTUBE API
-========================================================= -->
 
 <script src="https://www.youtube.com/iframe_api"></script>
 
@@ -1035,17 +824,14 @@ id="startScreen"
 <script>
 
 /* =========================================================
-   PLAYLIST
+   YOUTUBE PLAYLIST
 ========================================================= */
 
 const PLAYLIST_ID =
 "PLVeY0XJJSxJMh2rXK2Taby1v23kj3P5_N";
 
-
 let player = null;
-
 let playerReady = false;
-
 let isPlaying = false;
 
 
@@ -1097,43 +883,52 @@ document.getElementById("duration");
 
 
 /* =========================================================
-   =========================================================
-   STRETCH EFFECT
-   =========================================================
+   SCROLL / STRETCH SETTINGS
 ========================================================= */
 
 
 /*
+   LOWER = SLOWER
 
-   This is the important part.
+   Previous:
+   0.45
 
-   Mouse wheel UP:
-       elements stretch upward.
+   Now:
+   0.12
 
-   Mouse wheel DOWN:
-       elements stretch downward.
-
-   When wheel stops:
-       they smoothly return to original position.
-
+   This makes mouse-wheel movement
+   much less sensitive.
 */
 
+const WHEEL_POWER = 0.12;
+
+
+/*
+   Maximum distance the design can move.
+*/
+
+const MAX_STRETCH = 65;
+
+
+/*
+   Current position.
+*/
 
 let stretch = 0;
 
+
+/*
+   Target position.
+*/
+
 let targetStretch = 0;
 
+
+/*
+   Last time mouse wheel moved.
+*/
+
 let lastWheelTime = 0;
-
-
-/* Maximum movement */
-
-const MAX_STRETCH = 85;
-
-
-/* How strongly wheel moves the design */
-
-const WHEEL_POWER = 0.45;
 
 
 /* =========================================================
@@ -1145,21 +940,28 @@ window.addEventListener(
     function(event) {
 
         /*
-           Prevent actual page scrolling.
+           IMPORTANT:
+
+           Prevent actual browser scrolling.
         */
 
         event.preventDefault();
 
 
         /*
-           deltaY:
+           CORRECT DIRECTION:
 
-           negative = scroll UP
-           positive = scroll DOWN
+           Mouse UP
+           deltaY = negative
+           - negative = positive
+
+           Mouse DOWN
+           deltaY = positive
+           - positive = negative
         */
 
 
-        targetStretch +=
+        targetStretch -=
             event.deltaY * WHEEL_POWER;
 
 
@@ -1181,6 +983,7 @@ window.addEventListener(
             performance.now();
 
     },
+
     {
         passive: false
     }
@@ -1188,22 +991,22 @@ window.addEventListener(
 
 
 /* =========================================================
-   ANIMATION
+   STRETCH ANIMATION
 ========================================================= */
 
 function animateStretch(time) {
 
 
     /*
-       If mouse wheel hasn't been used
-       for a short moment, return to center.
+       Once the wheel stops,
+       slowly return to center.
     */
 
     if (
-        time - lastWheelTime > 55
+        time - lastWheelTime > 60
     ) {
 
-        targetStretch *= 0.82;
+        targetStretch *= 0.86;
 
     }
 
@@ -1213,12 +1016,14 @@ function animateStretch(time) {
     */
 
     stretch +=
-        (targetStretch - stretch) * 0.16;
+        (
+            targetStretch -
+            stretch
+        ) * 0.12;
 
 
     /*
-       If very close to center,
-       force zero.
+       Remove tiny movement.
     */
 
     if (
@@ -1234,32 +1039,25 @@ function animateStretch(time) {
 
 
     /*
-       Direction:
-
-       negative = UP
-       positive = DOWN
+       Distance from center.
     */
-
-
-    const direction =
-        stretch < 0
-            ? -1
-            : 1;
-
 
     const distance =
         Math.abs(stretch);
 
 
     /*
-       Stretch amount.
-
-       The further you scroll,
-       the taller the stretch becomes.
+       Slight vertical stretch.
     */
 
-    const scale =
-        1 + distance * 0.0025;
+    const titleScale =
+        1 +
+        distance * 0.0018;
+
+
+    const playerScale =
+        1 +
+        distance * 0.0012;
 
 
     /* =====================================================
@@ -1270,18 +1068,20 @@ function animateStretch(time) {
 
         `translateX(-50%)
          translateY(${stretch}px)
-         scaleY(${scale})`;
+         scaleY(${titleScale})`;
 
 
     /* =====================================================
        MUSIC PLAYER
+
+       Moves slightly less than title.
     ===================================================== */
 
     musicPlayer.style.transform =
 
         `translateX(-50%)
-         translateY(${stretch * 0.72}px)
-         scaleY(${1 + distance * 0.0018})`;
+         translateY(${stretch * 0.70}px)
+         scaleY(${playerScale})`;
 
 
     requestAnimationFrame(
@@ -1297,7 +1097,7 @@ requestAnimationFrame(
 
 
 /* =========================================================
-   YOUTUBE
+   YOUTUBE API
 ========================================================= */
 
 function onYouTubeIframeAPIReady() {
@@ -1308,7 +1108,6 @@ function onYouTubeIframeAPIReady() {
             {
 
                 width: "1",
-
                 height: "1",
 
                 playerVars: {
@@ -1409,9 +1208,7 @@ enterButton.addEventListener(
         );
 
 
-        if (
-            playerReady
-        ) {
+        if (playerReady) {
 
             player.playVideo();
 
@@ -1429,18 +1226,12 @@ playButton.addEventListener(
     "click",
     function() {
 
-        if (
-            !playerReady
-        ) {
-
+        if (!playerReady) {
             return;
-
         }
 
 
-        if (
-            isPlaying
-        ) {
+        if (isPlaying) {
 
             player.pauseVideo();
 
@@ -1493,7 +1284,7 @@ previous.addEventListener(
 
 
 /* =========================================================
-   SONG INFO
+   SONG INFORMATION
 ========================================================= */
 
 function updateSongInformation() {
@@ -1579,15 +1370,12 @@ setInterval(
             const total =
                 player.getDuration();
 
-
             const current =
                 player.getCurrentTime();
 
 
             if (!total) {
-
                 return;
-
             }
 
 
@@ -1636,19 +1424,15 @@ progressContainer.addEventListener(
         const width =
             progressContainer.clientWidth;
 
-
         const position =
             event.offsetX;
-
 
         const total =
             player.getDuration();
 
 
         if (!total) {
-
             return;
-
         }
 
 
@@ -1678,11 +1462,15 @@ function formatTime(seconds) {
 
 
     const minutes =
-        Math.floor(seconds / 60);
+        Math.floor(
+            seconds / 60
+        );
 
 
     const secs =
-        Math.floor(seconds % 60);
+        Math.floor(
+            seconds % 60
+        );
 
 
     return (
@@ -1735,7 +1523,6 @@ function updateClock() {
 
 updateClock();
 
-
 setInterval(
     updateClock,
     1000
@@ -1761,9 +1548,7 @@ function updateOnline() {
 
 }
 
-
 updateOnline();
-
 
 setInterval(
     updateOnline,
@@ -1822,13 +1607,10 @@ window.addEventListener(
 
 
 /* =========================================================
-   ALWAYS STAY AT SCROLL TOP
+   KEEP PAGE AT TOP
 ========================================================= */
 
-window.scrollTo(
-    0,
-    0
-);
+window.scrollTo(0, 0);
 
 </script>
 
