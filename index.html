@@ -19,9 +19,9 @@ rel="stylesheet"
 
 <style>
 
-/* =====================================================
+/* =========================================================
    RESET
-===================================================== */
+========================================================= */
 
 * {
     margin: 0;
@@ -45,17 +45,17 @@ body {
 
     overflow-y: auto;
 
-    font-family: Arial, sans-serif;
-
-    background: #15100c;
+    background: #111;
 
     color: white;
+
+    font-family: Arial, sans-serif;
 }
 
 
-/* =====================================================
-   MAIN PAGE
-===================================================== */
+/* =========================================================
+   MAIN SCROLLING PAGE
+========================================================= */
 
 .hero {
 
@@ -64,104 +64,107 @@ body {
     width: 100%;
 
     /*
-       Extra height creates a proper scrollable website
+       This creates the vertical scroll.
+       The fixed elements do NOT move.
     */
 
-    min-height: 180vh;
+    min-height: 250vh;
 
-    overflow: hidden;
+    overflow: visible;
 
     isolation: isolate;
 }
 
 
-/* =====================================================
-   FULL PAGE BACKGROUND
-===================================================== */
-
-.hero::after {
-
-    content: "";
-
-    position: absolute;
-
-    z-index: -3;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-
-    /*
-       Background stretches with the complete website
-    */
-
-    height: 100%;
-
-    background-image:
-        linear-gradient(
-            rgba(10, 7, 4, 0.04),
-            rgba(10, 7, 4, 0.32)
-        ),
-        url("bg.png");
-
-    background-size: cover;
-
-    background-position:
-        center top;
-
-    background-repeat: no-repeat;
-
-    /*
-       Makes the image cover the entire scrolling page
-    */
-
-    min-height: 100%;
-}
-
-
-/* =====================================================
-   DARK CINEMATIC VIGNETTE
-===================================================== */
+/* =========================================================
+   FIXED BACKGROUND
+========================================================= */
 
 .hero::before {
 
     content: "";
 
-    position: absolute;
-
-    z-index: -2;
+    position: fixed;
 
     inset: 0;
 
-    background:
-        radial-gradient(
-            ellipse at center top,
-            transparent 25%,
-            rgba(0,0,0,.22) 100%
-        );
+    width: 100vw;
+
+    height: 100vh;
+
+    background-image:
+
+        linear-gradient(
+            rgba(10, 7, 4, 0.04),
+            rgba(10, 7, 4, 0.20)
+        ),
+
+        url("bg.png");
+
+    /*
+       IMPORTANT:
+       cover keeps the image filling the screen.
+       It does NOT move when scrolling.
+    */
+
+    background-size: cover;
+
+    background-position: center center;
+
+    background-repeat: no-repeat;
+
+    z-index: -20;
 
     pointer-events: none;
 }
 
 
-/* =====================================================
+/* =========================================================
+   FIXED CINEMATIC VIGNETTE
+========================================================= */
+
+.hero::after {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100vw;
+
+    height: 100vh;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 30%,
+            rgba(0,0,0,.24) 100%
+        );
+
+    z-index: -19;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
    FILM GRAIN
-===================================================== */
+========================================================= */
 
 .grain {
 
-    position: absolute;
+    position: fixed;
 
-    z-index: 30;
-
-    top: -50%;
-    left: -50%;
+    inset: -50%;
 
     width: 200%;
+
     height: 200%;
 
-    opacity: .045;
+    z-index: 40;
+
+    opacity: .035;
 
     pointer-events: none;
 
@@ -197,19 +200,20 @@ body {
 }
 
 
-/* =====================================================
-   TOP BAR
-===================================================== */
+/* =========================================================
+   TOP BAR — FIXED
+========================================================= */
 
 .top-bar {
 
-    position: absolute;
+    position: fixed;
 
-    z-index: 10;
+    z-index: 30;
 
     top: 27px;
 
     left: 28px;
+
     right: 28px;
 
     display: flex;
@@ -219,12 +223,14 @@ body {
     justify-content: space-between;
 
     font-weight: 600;
+
+    pointer-events: none;
 }
 
 
-/* =====================================================
+/* =========================================================
    CLOCK
-===================================================== */
+========================================================= */
 
 .time {
 
@@ -235,9 +241,9 @@ body {
 }
 
 
-/* =====================================================
+/* =========================================================
    ONLINE
-===================================================== */
+========================================================= */
 
 .online {
 
@@ -263,6 +269,7 @@ body {
 .online-dot {
 
     width: 11px;
+
     height: 11px;
 
     border-radius: 50%;
@@ -270,7 +277,9 @@ body {
     background: #21e890;
 
     box-shadow:
+
         0 0 8px #21e890,
+
         0 0 18px rgba(33,232,144,.55);
 
     animation:
@@ -297,9 +306,9 @@ body {
 }
 
 
-/* =====================================================
+/* =========================================================
    MUSIC LINKS
-===================================================== */
+========================================================= */
 
 .music-links {
 
@@ -308,6 +317,8 @@ body {
     align-items: center;
 
     gap: 24px;
+
+    pointer-events: auto;
 }
 
 
@@ -340,15 +351,16 @@ body {
 }
 
 
-/* =====================================================
-   RAJA HINDUSTANI TITLE
-===================================================== */
+/* =========================================================
+   RAJA HINDUSTANI
+   FIXED — NEVER SCROLLS
+========================================================= */
 
 .title-container {
 
-    position: absolute;
+    position: fixed;
 
-    z-index: 5;
+    z-index: 25;
 
     top: 42px;
 
@@ -363,7 +375,7 @@ body {
     pointer-events: none;
 
     animation:
-        titleAppear 1.3s ease-out;
+        titleAppear 1.2s ease-out;
 }
 
 
@@ -385,6 +397,10 @@ body {
     color: #fff3d2;
 
     margin: 0;
+
+    /*
+       Vintage Indian movie poster effect
+    */
 
     text-shadow:
 
@@ -427,37 +443,39 @@ body {
 }
 
 
-/* =====================================================
-   SPACER
-   Keeps content spread through the scrolling page
-===================================================== */
+/* =========================================================
+   INVISIBLE SCROLL AREA
+========================================================= */
 
 .page-content {
 
-    position: relative;
-
-    z-index: 4;
-
     width: 100%;
 
-    height: 180vh;
+    height: 250vh;
+
+    /*
+       Nothing inside this area moves visually.
+       It only gives the browser something to scroll.
+    */
 
     pointer-events: none;
 }
 
 
-/* =====================================================
-   HIDDEN YOUTUBE PLAYER
-===================================================== */
+/* =========================================================
+   YOUTUBE PLAYER
+========================================================= */
 
 #youtube-player {
 
     position: fixed;
 
     width: 2px;
+
     height: 2px;
 
     left: -20px;
+
     bottom: -20px;
 
     opacity: .01;
@@ -466,9 +484,10 @@ body {
 }
 
 
-/* =====================================================
+/* =========================================================
    MUSIC PLAYER
-===================================================== */
+   FIXED — NEVER SCROLLS
+========================================================= */
 
 .player {
 
@@ -480,8 +499,7 @@ body {
 
     bottom: 30px;
 
-    transform:
-        translateX(-50%);
+    transform: translateX(-50%);
 
     width:
         min(500px, calc(100% - 30px));
@@ -493,11 +511,15 @@ body {
 
     border-radius: 18px;
 
+    /*
+       Indian taxi / vintage glass style
+    */
+
     background:
         linear-gradient(
             135deg,
-            rgba(218,174,57,.74),
-            rgba(55,39,17,.73)
+            rgba(218,174,57,.72),
+            rgba(55,39,17,.70)
         );
 
     border:
@@ -510,7 +532,7 @@ body {
         rgba(0,0,0,.32),
 
         inset 0 1px 1px
-        rgba(255,255,255,.2);
+        rgba(255,255,255,.20);
 
     backdrop-filter:
         blur(12px);
@@ -521,7 +543,8 @@ body {
 
     gap: 11px;
 
-    transition: .3s ease;
+    transition:
+        transform .3s ease;
 }
 
 
@@ -533,13 +556,14 @@ body {
 }
 
 
-/* =====================================================
+/* =========================================================
    ALBUM
-===================================================== */
+========================================================= */
 
 .album {
 
     width: 58px;
+
     height: 58px;
 
     flex-shrink: 0;
@@ -558,19 +582,22 @@ body {
     animation:
         albumRotate 10s linear infinite;
 
-    animation-play-state: paused;
+    animation-play-state:
+        paused;
 }
 
 
 .album.playing {
 
-    animation-play-state: running;
+    animation-play-state:
+        running;
 }
 
 
 .album img {
 
     width: 100%;
+
     height: 100%;
 
     object-fit: cover;
@@ -589,9 +616,9 @@ body {
 }
 
 
-/* =====================================================
+/* =========================================================
    SONG INFO
-===================================================== */
+========================================================= */
 
 .song-info {
 
@@ -633,9 +660,9 @@ body {
 }
 
 
-/* =====================================================
-   PROGRESS
-===================================================== */
+/* =========================================================
+   PROGRESS BAR
+========================================================= */
 
 .progress-container {
 
@@ -669,9 +696,9 @@ body {
 }
 
 
-/* =====================================================
-   TIME
-===================================================== */
+/* =========================================================
+   SONG TIME
+========================================================= */
 
 .time-display {
 
@@ -683,9 +710,9 @@ body {
 }
 
 
-/* =====================================================
+/* =========================================================
    CONTROLS
-===================================================== */
+========================================================= */
 
 .controls {
 
@@ -700,6 +727,7 @@ body {
 .control {
 
     width: 27px;
+
     height: 32px;
 
     border: none;
@@ -728,9 +756,14 @@ body {
 }
 
 
+/* =========================================================
+   PLAY BUTTON
+========================================================= */
+
 .play-button {
 
     width: 42px;
+
     height: 42px;
 
     border-radius: 50%;
@@ -747,9 +780,9 @@ body {
 }
 
 
-/* =====================================================
+/* =========================================================
    ENTER SCREEN
-===================================================== */
+========================================================= */
 
 .start-screen {
 
@@ -792,9 +825,7 @@ body {
     text-align: center;
 
     animation:
-        startFloat 2.2s
-        ease-in-out
-        infinite alternate;
+        startFloat 2.2s ease-in-out infinite alternate;
 }
 
 
@@ -884,9 +915,9 @@ body {
 }
 
 
-/* =====================================================
+/* =========================================================
    LOADING
-===================================================== */
+========================================================= */
 
 .loading {
 
@@ -921,6 +952,7 @@ body {
 .loader {
 
     width: 35px;
+
     height: 35px;
 
     border:
@@ -944,14 +976,15 @@ body {
 }
 
 
-/* =====================================================
+/* =========================================================
    MOBILE
-===================================================== */
+========================================================= */
 
 @media (max-width: 650px) {
 
+
     .hero {
-        min-height: 180vh;
+        min-height: 250vh;
     }
 
 
@@ -960,31 +993,37 @@ body {
         top: 17px;
 
         left: 17px;
+
         right: 17px;
     }
 
 
     .time {
+
         font-size: 13px;
     }
 
 
     .online {
+
         font-size: 11px;
     }
 
 
     .music-links {
+
         gap: 9px;
     }
 
 
     .music-links span {
+
         display: none;
     }
 
 
     .title-container {
+
         top: 38px;
     }
 
@@ -1028,21 +1067,25 @@ body {
     .album {
 
         width: 50px;
+
         height: 50px;
     }
 
 
     .song-name {
+
         font-size: 12px;
     }
 
 
     .artist {
+
         font-size: 9px;
     }
 
 
     .controls {
+
         gap: 0;
     }
 
@@ -1058,6 +1101,7 @@ body {
     .play-button {
 
         width: 38px;
+
         height: 38px;
     }
 
@@ -1071,23 +1115,9 @@ body {
 <body>
 
 
-<!-- =====================================================
-     LOADING
-===================================================== -->
-
-<div
-class="loading"
-id="loading"
->
-
-    <div class="loader"></div>
-
-</div>
-
-
-<!-- =====================================================
+<!-- =========================================================
      ENTER EXPERIENCE
-===================================================== -->
+========================================================= -->
 
 <div
 class="start-screen"
@@ -1119,17 +1149,21 @@ id="startScreen"
 </div>
 
 
-<!-- =====================================================
-     MAIN WEBSITE
-===================================================== -->
+<!-- =========================================================
+     MAIN PAGE
+========================================================= -->
 
 <main class="hero">
 
 
+    <!-- FILM GRAIN -->
+
     <div class="grain"></div>
 
 
-    <!-- TOP BAR -->
+    <!-- =====================================================
+         FIXED TOP BAR
+    ====================================================== -->
 
     <div class="top-bar">
 
@@ -1194,13 +1228,17 @@ id="startScreen"
     </div>
 
 
-    <!-- RAJA HINDUSTANI -->
+    <!-- =====================================================
+         FIXED RAJA HINDUSTANI TITLE
+    ====================================================== -->
 
     <div class="title-container">
 
         <h1 class="title">
 
-            राजा<br>
+            राजा
+
+            <br>
 
             हिन्दुस्तानी
 
@@ -1209,17 +1247,23 @@ id="startScreen"
     </div>
 
 
-    <!-- EXTRA PAGE HEIGHT -->
+    <!-- =====================================================
+         THIS CREATES THE SCROLL
+    ====================================================== -->
 
     <div class="page-content"></div>
 
 
-    <!-- HIDDEN YOUTUBE -->
+    <!-- =====================================================
+         HIDDEN YOUTUBE PLAYER
+    ====================================================== -->
 
     <div id="youtube-player"></div>
 
 
-    <!-- MUSIC PLAYER -->
+    <!-- =====================================================
+         FIXED MUSIC PLAYER
+    ====================================================== -->
 
     <div class="player">
 
@@ -1245,7 +1289,9 @@ id="startScreen"
             class="song-name"
             id="songName"
             >
+
                 Raja Hindustani
+
             </div>
 
 
@@ -1253,7 +1299,9 @@ id="startScreen"
             class="artist"
             id="artistName"
             >
+
                 YouTube Playlist
+
             </div>
 
 
@@ -1264,8 +1312,8 @@ id="startScreen"
 
                 <div
                 class="progress"
-                id="progress">
-                </div>
+                id="progress"
+                ></div>
 
             </div>
 
@@ -1293,25 +1341,35 @@ id="startScreen"
             <button
             class="control"
             id="previous"
+            title="Previous"
             >
+
                 |◀
+
             </button>
 
 
             <button
             class="control play-button"
             id="playButton"
+            title="Play / Pause"
             >
+
                 ▶
+
             </button>
 
 
             <button
             class="control"
             id="next"
+            title="Next"
             >
+
                 ▶|
+
             </button>
+
 
         </div>
 
@@ -1320,18 +1378,20 @@ id="startScreen"
 </main>
 
 
-<!-- =====================================================
-     YOUTUBE
-===================================================== -->
+<!-- =========================================================
+     YOUTUBE IFRAME API
+========================================================= -->
 
-<script src="https://www.youtube.com/iframe_api"></script>
+<script
+src="https://www.youtube.com/iframe_api">
+</script>
 
 
 <script>
 
-/* =====================================================
-   PLAYLIST
-===================================================== */
+/* =========================================================
+   YOUTUBE PLAYLIST
+========================================================= */
 
 const PLAYLIST_ID =
 "PLVeY0XJJSxJMh2rXK2Taby1v23kj3P5_N";
@@ -1344,60 +1404,84 @@ let playerReady = false;
 let isPlaying = false;
 
 
-/* =====================================================
+/* =========================================================
    ELEMENTS
-===================================================== */
+========================================================= */
 
 const startScreen =
-document.getElementById("startScreen");
+document.getElementById(
+    "startScreen"
+);
 
 const enterButton =
-document.getElementById("enterButton");
+document.getElementById(
+    "enterButton"
+);
 
 const playButton =
-document.getElementById("playButton");
+document.getElementById(
+    "playButton"
+);
 
 const previousButton =
-document.getElementById("previous");
+document.getElementById(
+    "previous"
+);
 
 const nextButton =
-document.getElementById("next");
+document.getElementById(
+    "next"
+);
 
 const album =
-document.getElementById("album");
+document.getElementById(
+    "album"
+);
 
 const albumImage =
-document.getElementById("albumImage");
+document.getElementById(
+    "albumImage"
+);
 
 const songName =
-document.getElementById("songName");
+document.getElementById(
+    "songName"
+);
 
 const artistName =
-document.getElementById("artistName");
+document.getElementById(
+    "artistName"
+);
 
 const progress =
-document.getElementById("progress");
+document.getElementById(
+    "progress"
+);
 
 const progressContainer =
-document.getElementById("progressContainer");
+document.getElementById(
+    "progressContainer"
+);
 
 const currentSongTime =
-document.getElementById("currentSongTime");
+document.getElementById(
+    "currentSongTime"
+);
 
 const duration =
-document.getElementById("duration");
+document.getElementById(
+    "duration"
+);
 
-const loading =
-document.getElementById("loading");
 
-
-/* =====================================================
-   YOUTUBE API
-===================================================== */
+/* =========================================================
+   YOUTUBE API READY
+========================================================= */
 
 function onYouTubeIframeAPIReady() {
 
-    player = new YT.Player(
+    player =
+    new YT.Player(
         "youtube-player",
         {
 
@@ -1421,10 +1505,11 @@ function onYouTubeIframeAPIReady() {
 
                 playsinline: 1,
 
-                listType: "playlist",
+                listType:
+                    "playlist",
 
-                list: PLAYLIST_ID
-
+                list:
+                    PLAYLIST_ID
             },
 
             events: {
@@ -1437,6 +1522,7 @@ function onYouTubeIframeAPIReady() {
 
                 onError:
                     onPlayerError
+
             }
 
         }
@@ -1444,15 +1530,13 @@ function onYouTubeIframeAPIReady() {
 }
 
 
-/* =====================================================
-   READY
-===================================================== */
+/* =========================================================
+   PLAYER READY
+========================================================= */
 
 function onPlayerReady() {
 
     playerReady = true;
-
-    loading.classList.add("hide");
 
     setTimeout(
         updateSongInformation,
@@ -1461,11 +1545,14 @@ function onPlayerReady() {
 }
 
 
-/* =====================================================
-   STATE
-===================================================== */
+/* =========================================================
+   PLAYER STATE
+========================================================= */
 
-function onPlayerStateChange(event) {
+function onPlayerStateChange(
+    event
+) {
+
 
     if (
         event.data ===
@@ -1474,11 +1561,15 @@ function onPlayerStateChange(event) {
 
         isPlaying = true;
 
-        playButton.textContent = "❚❚";
+        playButton.textContent =
+            "❚❚";
 
-        album.classList.add("playing");
+        album.classList.add(
+            "playing"
+        );
 
         updateSongInformation();
+
     }
 
 
@@ -1489,9 +1580,13 @@ function onPlayerStateChange(event) {
 
         isPlaying = false;
 
-        playButton.textContent = "▶";
+        playButton.textContent =
+            "▶";
 
-        album.classList.remove("playing");
+        album.classList.remove(
+            "playing"
+        );
+
     }
 
 
@@ -1502,149 +1597,186 @@ function onPlayerStateChange(event) {
 
         isPlaying = false;
 
-        playButton.textContent = "▶";
+        playButton.textContent =
+            "▶";
 
-        album.classList.remove("playing");
+        album.classList.remove(
+            "playing"
+        );
+
     }
+
 }
 
 
-/* =====================================================
-   ERROR
-===================================================== */
+/* =========================================================
+   YOUTUBE ERROR
+========================================================= */
 
-function onPlayerError(event) {
+function onPlayerError(
+    event
+) {
 
     console.log(
-        "YouTube Error:",
+        "YouTube Player Error:",
         event.data
     );
+
 }
 
 
-/* =====================================================
-   ENTER
-===================================================== */
+/* =========================================================
+   ENTER EXPERIENCE
+========================================================= */
 
 enterButton.addEventListener(
-"click",
-function() {
+    "click",
+    function() {
 
-    startScreen.classList.add("hidden");
 
-    if (
-        playerReady &&
-        player
-    ) {
+        startScreen.classList.add(
+            "hidden"
+        );
 
-        player.playVideo();
 
-        isPlaying = true;
+        if (
+            playerReady &&
+            player
+        ) {
 
-        playButton.textContent = "❚❚";
+            player.playVideo();
 
-        album.classList.add("playing");
+            isPlaying = true;
+
+            playButton.textContent =
+                "❚❚";
+
+            album.classList.add(
+                "playing"
+            );
+
+        }
+
     }
+);
 
-});
 
-
-/* =====================================================
+/* =========================================================
    PLAY / PAUSE
-===================================================== */
+========================================================= */
 
 playButton.addEventListener(
-"click",
-function() {
+    "click",
+    function() {
 
-    if (
-        !playerReady ||
-        !player
-    ) {
-        return;
+
+        if (
+            !playerReady ||
+            !player
+        ) {
+
+            return;
+
+        }
+
+
+        if (isPlaying) {
+
+            player.pauseVideo();
+
+        }
+
+        else {
+
+            player.playVideo();
+
+        }
+
     }
+);
 
 
-    if (isPlaying) {
-
-        player.pauseVideo();
-
-    }
-
-    else {
-
-        player.playVideo();
-
-    }
-
-});
-
-
-/* =====================================================
-   NEXT
-===================================================== */
+/* =========================================================
+   NEXT SONG
+========================================================= */
 
 nextButton.addEventListener(
-"click",
-function() {
+    "click",
+    function() {
 
-    if (
-        !playerReady ||
-        !player
-    ) {
-        return;
+
+        if (
+            !playerReady ||
+            !player
+        ) {
+
+            return;
+
+        }
+
+
+        player.nextVideo();
+
+
+        setTimeout(
+            updateSongInformation,
+            800
+        );
+
     }
-
-    player.nextVideo();
-
-    setTimeout(
-        updateSongInformation,
-        800
-    );
-
-});
+);
 
 
-/* =====================================================
-   PREVIOUS
-===================================================== */
+/* =========================================================
+   PREVIOUS SONG
+========================================================= */
 
 previousButton.addEventListener(
-"click",
-function() {
+    "click",
+    function() {
 
-    if (
-        !playerReady ||
-        !player
-    ) {
-        return;
+
+        if (
+            !playerReady ||
+            !player
+        ) {
+
+            return;
+
+        }
+
+
+        player.previousVideo();
+
+
+        setTimeout(
+            updateSongInformation,
+            800
+        );
+
     }
-
-    player.previousVideo();
-
-    setTimeout(
-        updateSongInformation,
-        800
-    );
-
-});
+);
 
 
-/* =====================================================
-   SONG INFORMATION
-===================================================== */
+/* =========================================================
+   UPDATE SONG
+========================================================= */
 
 function updateSongInformation() {
 
+
     if (
         !playerReady ||
         !player
     ) {
+
         return;
+
     }
 
 
     try {
+
 
         const videoData =
             player.getVideoData();
@@ -1657,6 +1789,7 @@ function updateSongInformation() {
 
             songName.textContent =
                 videoData.title;
+
         }
 
 
@@ -1667,6 +1800,7 @@ function updateSongInformation() {
 
             artistName.textContent =
                 videoData.author;
+
         }
 
 
@@ -1677,6 +1811,7 @@ function updateSongInformation() {
 
             albumImage.src =
                 `https://i.ytimg.com/vi/${videoData.video_id}/hqdefault.jpg`;
+
         }
 
     }
@@ -1690,150 +1825,190 @@ function updateSongInformation() {
 }
 
 
-/* =====================================================
-   PROGRESS
-===================================================== */
+/* =========================================================
+   UPDATE PROGRESS
+========================================================= */
 
 setInterval(
-function() {
-
-    if (
-        !playerReady ||
-        !player
-    ) {
-        return;
-    }
+    function() {
 
 
-    try {
+        if (
+            !playerReady ||
+            !player
+        ) {
+
+            return;
+
+        }
+
+
+        try {
+
+
+            const total =
+                player.getDuration();
+
+
+            const current =
+                player.getCurrentTime();
+
+
+            if (!total) {
+
+                return;
+
+            }
+
+
+            const percent =
+                (current / total) * 100;
+
+
+            progress.style.width =
+                percent + "%";
+
+
+            currentSongTime.textContent =
+                formatTime(current);
+
+
+            duration.textContent =
+                formatTime(total);
+
+
+        }
+
+        catch(error) {
+
+            console.log(error);
+
+        }
+
+
+    },
+    500
+);
+
+
+/* =========================================================
+   SEEK SONG
+========================================================= */
+
+progressContainer.addEventListener(
+    "click",
+    function(event) {
+
+
+        if (
+            !playerReady ||
+            !player
+        ) {
+
+            return;
+
+        }
+
+
+        const width =
+            progressContainer.clientWidth;
+
+
+        const position =
+            event.offsetX;
+
 
         const total =
             player.getDuration();
 
-        const current =
-            player.getCurrentTime();
-
 
         if (!total) {
+
             return;
+
         }
 
 
-        const percent =
-            (current / total) * 100;
-
-
-        progress.style.width =
-            percent + "%";
-
-
-        currentSongTime.textContent =
-            formatTime(current);
-
-
-        duration.textContent =
-            formatTime(total);
+        player.seekTo(
+            (position / width) * total,
+            true
+        );
 
     }
-
-    catch(error) {
-
-        console.log(error);
-
-    }
-
-},
-500
 );
 
 
-/* =====================================================
-   SEEK
-===================================================== */
+/* =========================================================
+   FORMAT TIME
+========================================================= */
 
-progressContainer.addEventListener(
-"click",
-function(event) {
+function formatTime(
+    seconds
+) {
 
-    if (
-        !playerReady ||
-        !player
-    ) {
-        return;
-    }
-
-
-    const width =
-        progressContainer.clientWidth;
-
-
-    const position =
-        event.offsetX;
-
-
-    const total =
-        player.getDuration();
-
-
-    if (!total) {
-        return;
-    }
-
-
-    player.seekTo(
-        (position / width) * total,
-        true
-    );
-
-});
-
-
-/* =====================================================
-   TIME FORMAT
-===================================================== */
-
-function formatTime(seconds) {
 
     if (
         !seconds ||
         isNaN(seconds)
     ) {
+
         return "0:00";
+
     }
 
 
     const minutes =
-        Math.floor(seconds / 60);
+        Math.floor(
+            seconds / 60
+        );
 
 
     const secondsLeft =
-        Math.floor(seconds % 60);
+        Math.floor(
+            seconds % 60
+        );
 
 
     return (
+
         minutes +
+
         ":" +
-        String(secondsLeft)
-        .padStart(2, "0")
+
+        String(
+            secondsLeft
+        ).padStart(
+            2,
+            "0"
+        )
+
     );
+
 }
 
 
-/* =====================================================
+/* =========================================================
    CLOCK
-===================================================== */
+========================================================= */
 
 function updateClock() {
 
-    const now = new Date();
+
+    const now =
+        new Date();
+
 
     let hours =
         now.getHours();
 
+
     const minutes =
         String(
             now.getMinutes()
-        ).padStart(2, "0");
+        ).padStart(
+            2,
+            "0"
+        );
 
 
     const ampm =
@@ -1850,10 +2025,12 @@ function updateClock() {
         "currentTime"
     ).textContent =
         `${hours}:${minutes} ${ampm}`;
+
 }
 
 
 updateClock();
+
 
 setInterval(
     updateClock,
@@ -1861,11 +2038,12 @@ setInterval(
 );
 
 
-/* =====================================================
-   ONLINE COUNTER
-===================================================== */
+/* =========================================================
+   ONLINE COUNT
+========================================================= */
 
 function updateOnline() {
+
 
     const count =
         Math.floor(
@@ -1877,10 +2055,12 @@ function updateOnline() {
         "onlineCount"
     ).textContent =
         count;
+
 }
 
 
 updateOnline();
+
 
 setInterval(
     updateOnline,
