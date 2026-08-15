@@ -64,8 +64,8 @@ body {
     width: 100%;
 
     /*
-       This creates the vertical scroll.
-       The fixed elements do NOT move.
+       Creates the scrolling area.
+       Fixed elements will not move.
     */
 
     min-height: 250vh;
@@ -102,9 +102,7 @@ body {
         url("bg.png");
 
     /*
-       IMPORTANT:
-       cover keeps the image filling the screen.
-       It does NOT move when scrolling.
+       Background remains fixed during scrolling
     */
 
     background-size: cover;
@@ -353,7 +351,7 @@ body {
 
 /* =========================================================
    RAJA HINDUSTANI
-   FIXED — NEVER SCROLLS
+   FIXED — DOES NOT SCROLL
 ========================================================= */
 
 .title-container {
@@ -398,10 +396,6 @@ body {
 
     margin: 0;
 
-    /*
-       Vintage Indian movie poster effect
-    */
-
     text-shadow:
 
         2px 2px 0 #49351f,
@@ -444,7 +438,7 @@ body {
 
 
 /* =========================================================
-   INVISIBLE SCROLL AREA
+   SCROLL AREA
 ========================================================= */
 
 .page-content {
@@ -453,17 +447,12 @@ body {
 
     height: 250vh;
 
-    /*
-       Nothing inside this area moves visually.
-       It only gives the browser something to scroll.
-    */
-
     pointer-events: none;
 }
 
 
 /* =========================================================
-   YOUTUBE PLAYER
+   HIDDEN YOUTUBE PLAYER
 ========================================================= */
 
 #youtube-player {
@@ -486,7 +475,7 @@ body {
 
 /* =========================================================
    MUSIC PLAYER
-   FIXED — NEVER SCROLLS
+   FIXED + HIGHER + TRANSPARENT
 ========================================================= */
 
 .player {
@@ -497,7 +486,11 @@ body {
 
     left: 50%;
 
-    bottom: 30px;
+    /*
+       Raised from the bottom
+    */
+
+    bottom: 55px;
 
     transform: translateX(-50%);
 
@@ -512,30 +505,45 @@ body {
     border-radius: 18px;
 
     /*
-       Indian taxi / vintage glass style
+       Warm vintage Indian taxi color.
+       Transparency allows bg.png to
+       subtly show through.
     */
 
     background:
         linear-gradient(
             135deg,
-            rgba(218,174,57,.72),
-            rgba(55,39,17,.70)
+            rgba(119, 72, 35, 0.62),
+            rgba(54, 35, 20, 0.58),
+            rgba(128, 82, 39, 0.52)
         );
 
     border:
         1px solid
-        rgba(255,230,150,.38);
+        rgba(255, 220, 160, 0.30);
 
     box-shadow:
 
-        0 12px 35px
-        rgba(0,0,0,.32),
+        0 10px 30px
+        rgba(0, 0, 0, 0.38),
 
         inset 0 1px 1px
-        rgba(255,255,255,.20);
+        rgba(255, 240, 210, 0.16),
+
+        inset 0 -1px 2px
+        rgba(0, 0, 0, 0.18);
+
+    /*
+       Allows background colors to remain visible
+    */
 
     backdrop-filter:
-        blur(12px);
+        blur(8px)
+        saturate(115%);
+
+    -webkit-backdrop-filter:
+        blur(8px)
+        saturate(115%);
 
     display: flex;
 
@@ -617,7 +625,7 @@ body {
 
 
 /* =========================================================
-   SONG INFO
+   SONG INFORMATION
 ========================================================= */
 
 .song-info {
@@ -781,7 +789,7 @@ body {
 
 
 /* =========================================================
-   ENTER SCREEN
+   ENTER EXPERIENCE
 ========================================================= */
 
 .start-screen {
@@ -825,7 +833,9 @@ body {
     text-align: center;
 
     animation:
-        startFloat 2.2s ease-in-out infinite alternate;
+        startFloat 2.2s
+        ease-in-out
+        infinite alternate;
 }
 
 
@@ -916,67 +926,6 @@ body {
 
 
 /* =========================================================
-   LOADING
-========================================================= */
-
-.loading {
-
-    position: fixed;
-
-    z-index: 150;
-
-    inset: 0;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    background: #17100d;
-
-    transition:
-        opacity .7s ease,
-        visibility .7s ease;
-}
-
-
-.loading.hide {
-
-    opacity: 0;
-
-    visibility: hidden;
-}
-
-
-.loader {
-
-    width: 35px;
-
-    height: 35px;
-
-    border:
-        3px solid
-        rgba(255,255,255,.2);
-
-    border-top-color: white;
-
-    border-radius: 50%;
-
-    animation:
-        spin .8s linear infinite;
-}
-
-
-@keyframes spin {
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-
-/* =========================================================
    MOBILE
 ========================================================= */
 
@@ -984,7 +933,9 @@ body {
 
 
     .hero {
+
         min-height: 250vh;
+
     }
 
 
@@ -995,36 +946,42 @@ body {
         left: 17px;
 
         right: 17px;
+
     }
 
 
     .time {
 
         font-size: 13px;
+
     }
 
 
     .online {
 
         font-size: 11px;
+
     }
 
 
     .music-links {
 
         gap: 9px;
+
     }
 
 
     .music-links span {
 
         display: none;
+
     }
 
 
     .title-container {
 
         top: 38px;
+
     }
 
 
@@ -1043,15 +1000,24 @@ body {
             4px 4px 0 rgba(35,22,10,.6),
 
             0 8px 18px rgba(0,0,0,.55);
+
     }
 
+
+    /* =====================================================
+       MOBILE MUSIC PLAYER
+    ===================================================== */
 
     .player {
 
         width:
             calc(100% - 24px);
 
-        bottom: 14px;
+        /*
+           Raised on mobile too
+        */
+
+        bottom: 25px;
 
         min-height: 68px;
 
@@ -1061,6 +1027,7 @@ body {
         border-radius: 15px;
 
         gap: 8px;
+
     }
 
 
@@ -1069,24 +1036,28 @@ body {
         width: 50px;
 
         height: 50px;
+
     }
 
 
     .song-name {
 
         font-size: 12px;
+
     }
 
 
     .artist {
 
         font-size: 9px;
+
     }
 
 
     .controls {
 
         gap: 0;
+
     }
 
 
@@ -1095,6 +1066,7 @@ body {
         width: 24px;
 
         height: 28px;
+
     }
 
 
@@ -1103,6 +1075,7 @@ body {
         width: 38px;
 
         height: 38px;
+
     }
 
 }
@@ -1116,7 +1089,7 @@ body {
 
 
 <!-- =========================================================
-     ENTER EXPERIENCE
+     ENTER SCREEN
 ========================================================= -->
 
 <div
@@ -1127,13 +1100,22 @@ id="startScreen"
     <div class="start-content">
 
         <h2>
-            राजा<br>
+
+            राजा
+
+            <br>
+
             हिन्दुस्तानी
+
         </h2>
 
+
         <p>
+
             Put on your headphones and enter the memory
+
         </p>
+
 
         <button
         class="enter-button"
@@ -1150,7 +1132,7 @@ id="startScreen"
 
 
 <!-- =========================================================
-     MAIN PAGE
+     MAIN WEBSITE
 ========================================================= -->
 
 <main class="hero">
@@ -1162,7 +1144,7 @@ id="startScreen"
 
 
     <!-- =====================================================
-         FIXED TOP BAR
+         TOP BAR
     ====================================================== -->
 
     <div class="top-bar">
@@ -1172,7 +1154,9 @@ id="startScreen"
         class="time"
         id="currentTime"
         >
+
             2:59 pm
+
         </div>
 
 
@@ -1229,7 +1213,7 @@ id="startScreen"
 
 
     <!-- =====================================================
-         FIXED RAJA HINDUSTANI TITLE
+         FIXED TITLE
     ====================================================== -->
 
     <div class="title-container">
@@ -1248,7 +1232,7 @@ id="startScreen"
 
 
     <!-- =====================================================
-         THIS CREATES THE SCROLL
+         SCROLL AREA
     ====================================================== -->
 
     <div class="page-content"></div>
@@ -1379,7 +1363,7 @@ id="startScreen"
 
 
 <!-- =========================================================
-     YOUTUBE IFRAME API
+     YOUTUBE API
 ========================================================= -->
 
 <script
@@ -1390,7 +1374,7 @@ src="https://www.youtube.com/iframe_api">
 <script>
 
 /* =========================================================
-   YOUTUBE PLAYLIST
+   PLAYLIST
 ========================================================= */
 
 const PLAYLIST_ID =
@@ -1475,7 +1459,7 @@ document.getElementById(
 
 
 /* =========================================================
-   YOUTUBE API READY
+   YOUTUBE API
 ========================================================= */
 
 function onYouTubeIframeAPIReady() {
@@ -1510,6 +1494,7 @@ function onYouTubeIframeAPIReady() {
 
                 list:
                     PLAYLIST_ID
+
             },
 
             events: {
@@ -1527,11 +1512,12 @@ function onYouTubeIframeAPIReady() {
 
         }
     );
+
 }
 
 
 /* =========================================================
-   PLAYER READY
+   READY
 ========================================================= */
 
 function onPlayerReady() {
@@ -1542,6 +1528,7 @@ function onPlayerReady() {
         updateSongInformation,
         1000
     );
+
 }
 
 
@@ -1610,7 +1597,7 @@ function onPlayerStateChange(
 
 
 /* =========================================================
-   YOUTUBE ERROR
+   ERROR
 ========================================================= */
 
 function onPlayerError(
@@ -1618,7 +1605,7 @@ function onPlayerError(
 ) {
 
     console.log(
-        "YouTube Player Error:",
+        "YouTube Error:",
         event.data
     );
 
@@ -1697,7 +1684,7 @@ playButton.addEventListener(
 
 
 /* =========================================================
-   NEXT SONG
+   NEXT
 ========================================================= */
 
 nextButton.addEventListener(
@@ -1728,7 +1715,7 @@ nextButton.addEventListener(
 
 
 /* =========================================================
-   PREVIOUS SONG
+   PREVIOUS
 ========================================================= */
 
 previousButton.addEventListener(
@@ -1759,7 +1746,7 @@ previousButton.addEventListener(
 
 
 /* =========================================================
-   UPDATE SONG
+   SONG INFORMATION
 ========================================================= */
 
 function updateSongInformation() {
@@ -1814,6 +1801,7 @@ function updateSongInformation() {
 
         }
 
+
     }
 
     catch(error) {
@@ -1826,7 +1814,7 @@ function updateSongInformation() {
 
 
 /* =========================================================
-   UPDATE PROGRESS
+   PROGRESS
 ========================================================= */
 
 setInterval(
@@ -1892,7 +1880,7 @@ setInterval(
 
 
 /* =========================================================
-   SEEK SONG
+   SEEK
 ========================================================= */
 
 progressContainer.addEventListener(
@@ -1972,9 +1960,7 @@ function formatTime(
     return (
 
         minutes +
-
         ":" +
-
         String(
             secondsLeft
         ).padStart(
@@ -2039,7 +2025,7 @@ setInterval(
 
 
 /* =========================================================
-   ONLINE COUNT
+   ONLINE COUNTER
 ========================================================= */
 
 function updateOnline() {
