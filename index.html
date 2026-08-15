@@ -2,9 +2,7 @@
 <html lang="hi">
 
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>राजा हिन्दुस्तानी</title>
@@ -36,42 +34,25 @@ html {
 }
 
 body {
-
     width: 100%;
-
     min-height: 100vh;
-
     overflow-x: hidden;
-
     overflow-y: auto;
-
     background: #111;
-
     color: white;
-
     font-family: Arial, sans-serif;
 }
 
 
 /* =========================================================
-   MAIN SCROLLING PAGE
+   MAIN PAGE
 ========================================================= */
 
 .hero {
-
     position: relative;
-
     width: 100%;
-
-    /*
-       Creates the scrolling area.
-       Fixed elements will not move.
-    */
-
     min-height: 250vh;
-
     overflow: visible;
-
     isolation: isolate;
 }
 
@@ -89,21 +70,14 @@ body {
     inset: 0;
 
     width: 100vw;
-
     height: 100vh;
 
     background-image:
-
         linear-gradient(
             rgba(10, 7, 4, 0.04),
             rgba(10, 7, 4, 0.20)
         ),
-
         url("bg.png");
-
-    /*
-       Background remains fixed during scrolling
-    */
 
     background-size: cover;
 
@@ -118,7 +92,7 @@ body {
 
 
 /* =========================================================
-   FIXED CINEMATIC VIGNETTE
+   BACKGROUND VIGNETTE
 ========================================================= */
 
 .hero::after {
@@ -130,7 +104,6 @@ body {
     inset: 0;
 
     width: 100vw;
-
     height: 100vh;
 
     background:
@@ -157,7 +130,6 @@ body {
     inset: -50%;
 
     width: 200%;
-
     height: 200%;
 
     z-index: 40;
@@ -172,7 +144,6 @@ body {
     animation:
         grainMove .2s steps(2) infinite;
 }
-
 
 @keyframes grainMove {
 
@@ -199,7 +170,7 @@ body {
 
 
 /* =========================================================
-   TOP BAR — FIXED
+   TOP BAR
 ========================================================= */
 
 .top-bar {
@@ -211,7 +182,6 @@ body {
     top: 27px;
 
     left: 28px;
-
     right: 28px;
 
     display: flex;
@@ -226,9 +196,7 @@ body {
 }
 
 
-/* =========================================================
-   CLOCK
-========================================================= */
+/* CLOCK */
 
 .time {
 
@@ -263,11 +231,9 @@ body {
         0 2px 8px rgba(0,0,0,.7);
 }
 
-
 .online-dot {
 
     width: 11px;
-
     height: 11px;
 
     border-radius: 50%;
@@ -275,15 +241,12 @@ body {
     background: #21e890;
 
     box-shadow:
-
         0 0 8px #21e890,
-
         0 0 18px rgba(33,232,144,.55);
 
     animation:
         onlinePulse 2s infinite;
 }
-
 
 @keyframes onlinePulse {
 
@@ -319,7 +282,6 @@ body {
     pointer-events: auto;
 }
 
-
 .music-links a {
 
     color: white;
@@ -340,7 +302,6 @@ body {
     transition: .25s ease;
 }
 
-
 .music-links a:hover {
 
     transform: translateY(-2px);
@@ -351,7 +312,7 @@ body {
 
 /* =========================================================
    RAJA HINDUSTANI
-   FIXED — DOES NOT SCROLL
+   FIXED + ONLY 1PX SCROLL MOVEMENT
 ========================================================= */
 
 .title-container {
@@ -366,14 +327,20 @@ body {
 
     width: 100%;
 
-    transform: translateX(-50%);
+    /*
+       JavaScript changes only the translateY
+       by maximum 1px.
+    */
+
+    transform:
+        translateX(-50%)
+        translateY(0px);
 
     text-align: center;
 
     pointer-events: none;
 
-    animation:
-        titleAppear 1.2s ease-out;
+    will-change: transform;
 }
 
 
@@ -413,30 +380,6 @@ body {
 }
 
 
-@keyframes titleAppear {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateX(-50%)
-            translateY(-15px)
-            scale(.95);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateX(-50%)
-            translateY(0)
-            scale(1);
-    }
-}
-
-
 /* =========================================================
    SCROLL AREA
 ========================================================= */
@@ -452,7 +395,7 @@ body {
 
 
 /* =========================================================
-   HIDDEN YOUTUBE PLAYER
+   YOUTUBE PLAYER
 ========================================================= */
 
 #youtube-player {
@@ -475,7 +418,7 @@ body {
 
 /* =========================================================
    MUSIC PLAYER
-   FIXED + HIGHER + TRANSPARENT
+   HIGHER + TRANSPARENT + ONLY 1PX SCROLL MOVEMENT
 ========================================================= */
 
 .player {
@@ -487,12 +430,19 @@ body {
     left: 50%;
 
     /*
-       Raised from the bottom
+       Slightly higher
     */
 
     bottom: 55px;
 
-    transform: translateX(-50%);
+    /*
+       JavaScript changes only translateY
+       by maximum 1px.
+    */
+
+    transform:
+        translateX(-50%)
+        translateY(0px);
 
     width:
         min(500px, calc(100% - 30px));
@@ -504,11 +454,10 @@ body {
 
     border-radius: 18px;
 
-    /*
-       Warm vintage Indian taxi color.
-       Transparency allows bg.png to
-       subtly show through.
-    */
+
+    /* =====================================================
+       VINTAGE INDIAN TAXI GLASS COLOR
+    ===================================================== */
 
     background:
         linear-gradient(
@@ -518,9 +467,11 @@ body {
             rgba(128, 82, 39, 0.52)
         );
 
+
     border:
         1px solid
         rgba(255, 220, 160, 0.30);
+
 
     box-shadow:
 
@@ -533,9 +484,6 @@ body {
         inset 0 -1px 2px
         rgba(0, 0, 0, 0.18);
 
-    /*
-       Allows background colors to remain visible
-    */
 
     backdrop-filter:
         blur(8px)
@@ -545,22 +493,14 @@ body {
         blur(8px)
         saturate(115%);
 
+
     display: flex;
 
     align-items: center;
 
     gap: 11px;
 
-    transition:
-        transform .3s ease;
-}
-
-
-.player:hover {
-
-    transform:
-        translateX(-50%)
-        translateY(-3px);
+    will-change: transform;
 }
 
 
@@ -594,13 +534,11 @@ body {
         paused;
 }
 
-
 .album.playing {
 
     animation-play-state:
         running;
 }
-
 
 .album img {
 
@@ -610,7 +548,6 @@ body {
 
     object-fit: cover;
 }
-
 
 @keyframes albumRotate {
 
@@ -625,7 +562,7 @@ body {
 
 
 /* =========================================================
-   SONG INFORMATION
+   SONG INFO
 ========================================================= */
 
 .song-info {
@@ -634,7 +571,6 @@ body {
 
     min-width: 0;
 }
-
 
 .song-name {
 
@@ -650,7 +586,6 @@ body {
 
     margin-bottom: 3px;
 }
-
 
 .artist {
 
@@ -669,7 +604,7 @@ body {
 
 
 /* =========================================================
-   PROGRESS BAR
+   PROGRESS
 ========================================================= */
 
 .progress-container {
@@ -688,7 +623,6 @@ body {
     overflow: hidden;
 }
 
-
 .progress {
 
     width: 0%;
@@ -705,7 +639,7 @@ body {
 
 
 /* =========================================================
-   SONG TIME
+   TIME
 ========================================================= */
 
 .time-display {
@@ -731,7 +665,6 @@ body {
     gap: 3px;
 }
 
-
 .control {
 
     width: 27px;
@@ -756,7 +689,6 @@ body {
 
     transition: .2s;
 }
-
 
 .control:hover {
 
@@ -789,7 +721,7 @@ body {
 
 
 /* =========================================================
-   ENTER EXPERIENCE
+   ENTER SCREEN
 ========================================================= */
 
 .start-screen {
@@ -817,7 +749,6 @@ body {
         visibility .7s ease;
 }
 
-
 .start-screen.hidden {
 
     opacity: 0;
@@ -826,7 +757,6 @@ body {
 
     pointer-events: none;
 }
-
 
 .start-content {
 
@@ -837,7 +767,6 @@ body {
         ease-in-out
         infinite alternate;
 }
-
 
 .start-content h2 {
 
@@ -863,7 +792,6 @@ body {
     margin-bottom: 18px;
 }
 
-
 .start-content p {
 
     font-size: 14px;
@@ -872,7 +800,6 @@ body {
 
     margin-bottom: 28px;
 }
-
 
 .enter-button {
 
@@ -902,7 +829,6 @@ body {
     transition: .3s;
 }
 
-
 .enter-button:hover {
 
     background: white;
@@ -911,7 +837,6 @@ body {
 
     transform: scale(1.05);
 }
-
 
 @keyframes startFloat {
 
@@ -931,13 +856,9 @@ body {
 
 @media (max-width: 650px) {
 
-
     .hero {
-
         min-height: 250vh;
-
     }
-
 
     .top-bar {
 
@@ -946,44 +867,27 @@ body {
         left: 17px;
 
         right: 17px;
-
     }
-
 
     .time {
-
         font-size: 13px;
-
     }
-
 
     .online {
-
         font-size: 11px;
-
     }
-
 
     .music-links {
-
         gap: 9px;
-
     }
-
 
     .music-links span {
-
         display: none;
-
     }
-
 
     .title-container {
-
         top: 38px;
-
     }
-
 
     .title {
 
@@ -1000,22 +904,15 @@ body {
             4px 4px 0 rgba(35,22,10,.6),
 
             0 8px 18px rgba(0,0,0,.55);
-
     }
 
 
-    /* =====================================================
-       MOBILE MUSIC PLAYER
-    ===================================================== */
+    /* MOBILE MUSIC PLAYER */
 
     .player {
 
         width:
             calc(100% - 24px);
-
-        /*
-           Raised on mobile too
-        */
 
         bottom: 25px;
 
@@ -1027,55 +924,39 @@ body {
         border-radius: 15px;
 
         gap: 8px;
-
     }
-
 
     .album {
 
         width: 50px;
 
         height: 50px;
-
     }
-
 
     .song-name {
-
         font-size: 12px;
-
     }
-
 
     .artist {
-
         font-size: 9px;
-
     }
-
 
     .controls {
-
         gap: 0;
-
     }
-
 
     .control {
 
         width: 24px;
 
         height: 28px;
-
     }
-
 
     .play-button {
 
         width: 38px;
 
         height: 38px;
-
     }
 
 }
@@ -1089,7 +970,7 @@ body {
 
 
 <!-- =========================================================
-     ENTER SCREEN
+     ENTER EXPERIENCE
 ========================================================= -->
 
 <div
@@ -1109,13 +990,9 @@ id="startScreen"
 
         </h2>
 
-
         <p>
-
             Put on your headphones and enter the memory
-
         </p>
-
 
         <button
         class="enter-button"
@@ -1138,8 +1015,6 @@ id="startScreen"
 <main class="hero">
 
 
-    <!-- FILM GRAIN -->
-
     <div class="grain"></div>
 
 
@@ -1149,14 +1024,11 @@ id="startScreen"
 
     <div class="top-bar">
 
-
         <div
         class="time"
         id="currentTime"
         >
-
             2:59 pm
-
         </div>
 
 
@@ -1178,7 +1050,6 @@ id="startScreen"
 
 
         <div class="music-links">
-
 
             <a
             href="https://open.spotify.com/"
@@ -1213,7 +1084,7 @@ id="startScreen"
 
 
     <!-- =====================================================
-         FIXED TITLE
+         RAJA HINDUSTANI
     ====================================================== -->
 
     <div class="title-container">
@@ -1239,14 +1110,14 @@ id="startScreen"
 
 
     <!-- =====================================================
-         HIDDEN YOUTUBE PLAYER
+         YOUTUBE
     ====================================================== -->
 
     <div id="youtube-player"></div>
 
 
     <!-- =====================================================
-         FIXED MUSIC PLAYER
+         MUSIC PLAYER
     ====================================================== -->
 
     <div class="player">
@@ -1273,9 +1144,7 @@ id="startScreen"
             class="song-name"
             id="songName"
             >
-
                 Raja Hindustani
-
             </div>
 
 
@@ -1283,9 +1152,7 @@ id="startScreen"
             class="artist"
             id="artistName"
             >
-
                 YouTube Playlist
-
             </div>
 
 
@@ -1327,9 +1194,7 @@ id="startScreen"
             id="previous"
             title="Previous"
             >
-
                 |◀
-
             </button>
 
 
@@ -1338,9 +1203,7 @@ id="startScreen"
             id="playButton"
             title="Play / Pause"
             >
-
                 ▶
-
             </button>
 
 
@@ -1349,11 +1212,8 @@ id="startScreen"
             id="next"
             title="Next"
             >
-
                 ▶|
-
             </button>
-
 
         </div>
 
@@ -1366,9 +1226,7 @@ id="startScreen"
      YOUTUBE API
 ========================================================= -->
 
-<script
-src="https://www.youtube.com/iframe_api">
-</script>
+<script src="https://www.youtube.com/iframe_api"></script>
 
 
 <script>
@@ -1393,79 +1251,52 @@ let isPlaying = false;
 ========================================================= */
 
 const startScreen =
-document.getElementById(
-    "startScreen"
-);
+document.getElementById("startScreen");
 
 const enterButton =
-document.getElementById(
-    "enterButton"
-);
+document.getElementById("enterButton");
 
 const playButton =
-document.getElementById(
-    "playButton"
-);
+document.getElementById("playButton");
 
 const previousButton =
-document.getElementById(
-    "previous"
-);
+document.getElementById("previous");
 
 const nextButton =
-document.getElementById(
-    "next"
-);
+document.getElementById("next");
 
 const album =
-document.getElementById(
-    "album"
-);
+document.getElementById("album");
 
 const albumImage =
-document.getElementById(
-    "albumImage"
-);
+document.getElementById("albumImage");
 
 const songName =
-document.getElementById(
-    "songName"
-);
+document.getElementById("songName");
 
 const artistName =
-document.getElementById(
-    "artistName"
-);
+document.getElementById("artistName");
 
 const progress =
-document.getElementById(
-    "progress"
-);
+document.getElementById("progress");
 
 const progressContainer =
-document.getElementById(
-    "progressContainer"
-);
+document.getElementById("progressContainer");
 
 const currentSongTime =
-document.getElementById(
-    "currentSongTime"
-);
+document.getElementById("currentSongTime");
 
 const duration =
-document.getElementById(
-    "duration"
-);
+document.getElementById("duration");
 
 
 /* =========================================================
-   YOUTUBE API
+   YOUTUBE API READY
 ========================================================= */
 
 function onYouTubeIframeAPIReady() {
 
-    player =
-    new YT.Player(
+    player = new YT.Player(
         "youtube-player",
         {
 
@@ -1489,24 +1320,20 @@ function onYouTubeIframeAPIReady() {
 
                 playsinline: 1,
 
-                listType:
-                    "playlist",
+                listType: "playlist",
 
-                list:
-                    PLAYLIST_ID
+                list: PLAYLIST_ID
 
             },
 
             events: {
 
-                onReady:
-                    onPlayerReady,
+                onReady: onPlayerReady,
 
                 onStateChange:
                     onPlayerStateChange,
 
-                onError:
-                    onPlayerError
+                onError: onPlayerError
 
             }
 
@@ -1517,7 +1344,7 @@ function onYouTubeIframeAPIReady() {
 
 
 /* =========================================================
-   READY
+   PLAYER READY
 ========================================================= */
 
 function onPlayerReady() {
@@ -1536,10 +1363,7 @@ function onPlayerReady() {
    PLAYER STATE
 ========================================================= */
 
-function onPlayerStateChange(
-    event
-) {
-
+function onPlayerStateChange(event) {
 
     if (
         event.data ===
@@ -1548,17 +1372,13 @@ function onPlayerStateChange(
 
         isPlaying = true;
 
-        playButton.textContent =
-            "❚❚";
+        playButton.textContent = "❚❚";
 
-        album.classList.add(
-            "playing"
-        );
+        album.classList.add("playing");
 
         updateSongInformation();
 
     }
-
 
     else if (
         event.data ===
@@ -1567,15 +1387,11 @@ function onPlayerStateChange(
 
         isPlaying = false;
 
-        playButton.textContent =
-            "▶";
+        playButton.textContent = "▶";
 
-        album.classList.remove(
-            "playing"
-        );
+        album.classList.remove("playing");
 
     }
-
 
     else if (
         event.data ===
@@ -1584,12 +1400,9 @@ function onPlayerStateChange(
 
         isPlaying = false;
 
-        playButton.textContent =
-            "▶";
+        playButton.textContent = "▶";
 
-        album.classList.remove(
-            "playing"
-        );
+        album.classList.remove("playing");
 
     }
 
@@ -1597,12 +1410,10 @@ function onPlayerStateChange(
 
 
 /* =========================================================
-   ERROR
+   YOUTUBE ERROR
 ========================================================= */
 
-function onPlayerError(
-    event
-) {
+function onPlayerError(event) {
 
     console.log(
         "YouTube Error:",
@@ -1620,11 +1431,7 @@ enterButton.addEventListener(
     "click",
     function() {
 
-
-        startScreen.classList.add(
-            "hidden"
-        );
-
+        startScreen.classList.add("hidden");
 
         if (
             playerReady &&
@@ -1635,12 +1442,9 @@ enterButton.addEventListener(
 
             isPlaying = true;
 
-            playButton.textContent =
-                "❚❚";
+            playButton.textContent = "❚❚";
 
-            album.classList.add(
-                "playing"
-            );
+            album.classList.add("playing");
 
         }
 
@@ -1656,16 +1460,12 @@ playButton.addEventListener(
     "click",
     function() {
 
-
         if (
             !playerReady ||
             !player
         ) {
-
             return;
-
         }
-
 
         if (isPlaying) {
 
@@ -1691,19 +1491,14 @@ nextButton.addEventListener(
     "click",
     function() {
 
-
         if (
             !playerReady ||
             !player
         ) {
-
             return;
-
         }
 
-
         player.nextVideo();
-
 
         setTimeout(
             updateSongInformation,
@@ -1722,19 +1517,14 @@ previousButton.addEventListener(
     "click",
     function() {
 
-
         if (
             !playerReady ||
             !player
         ) {
-
             return;
-
         }
 
-
         player.previousVideo();
-
 
         setTimeout(
             updateSongInformation,
@@ -1751,23 +1541,17 @@ previousButton.addEventListener(
 
 function updateSongInformation() {
 
-
     if (
         !playerReady ||
         !player
     ) {
-
         return;
-
     }
-
 
     try {
 
-
         const videoData =
             player.getVideoData();
-
 
         if (
             videoData &&
@@ -1779,7 +1563,6 @@ function updateSongInformation() {
 
         }
 
-
         if (
             videoData &&
             videoData.author
@@ -1790,7 +1573,6 @@ function updateSongInformation() {
 
         }
 
-
         if (
             videoData &&
             videoData.video_id
@@ -1800,7 +1582,6 @@ function updateSongInformation() {
                 `https://i.ytimg.com/vi/${videoData.video_id}/hqdefault.jpg`;
 
         }
-
 
     }
 
@@ -1820,50 +1601,36 @@ function updateSongInformation() {
 setInterval(
     function() {
 
-
         if (
             !playerReady ||
             !player
         ) {
-
             return;
-
         }
 
-
         try {
-
 
             const total =
                 player.getDuration();
 
-
             const current =
                 player.getCurrentTime();
 
-
             if (!total) {
-
                 return;
-
             }
-
 
             const percent =
                 (current / total) * 100;
 
-
             progress.style.width =
                 percent + "%";
-
 
             currentSongTime.textContent =
                 formatTime(current);
 
-
             duration.textContent =
                 formatTime(total);
-
 
         }
 
@@ -1872,7 +1639,6 @@ setInterval(
             console.log(error);
 
         }
-
 
     },
     500
@@ -1887,35 +1653,25 @@ progressContainer.addEventListener(
     "click",
     function(event) {
 
-
         if (
             !playerReady ||
             !player
         ) {
-
             return;
-
         }
-
 
         const width =
             progressContainer.clientWidth;
 
-
         const position =
             event.offsetX;
-
 
         const total =
             player.getDuration();
 
-
         if (!total) {
-
             return;
-
         }
-
 
         player.seekTo(
             (position / width) * total,
@@ -1930,44 +1686,26 @@ progressContainer.addEventListener(
    FORMAT TIME
 ========================================================= */
 
-function formatTime(
-    seconds
-) {
-
+function formatTime(seconds) {
 
     if (
         !seconds ||
         isNaN(seconds)
     ) {
-
         return "0:00";
-
     }
 
-
     const minutes =
-        Math.floor(
-            seconds / 60
-        );
-
+        Math.floor(seconds / 60);
 
     const secondsLeft =
-        Math.floor(
-            seconds % 60
-        );
-
+        Math.floor(seconds % 60);
 
     return (
-
         minutes +
         ":" +
-        String(
-            secondsLeft
-        ).padStart(
-            2,
-            "0"
-        )
-
+        String(secondsLeft)
+            .padStart(2, "0")
     );
 
 }
@@ -1979,33 +1717,23 @@ function formatTime(
 
 function updateClock() {
 
-
-    const now =
-        new Date();
-
+    const now = new Date();
 
     let hours =
         now.getHours();
 
-
     const minutes =
         String(
             now.getMinutes()
-        ).padStart(
-            2,
-            "0"
-        );
-
+        ).padStart(2, "0");
 
     const ampm =
         hours >= 12
             ? "pm"
             : "am";
 
-
     hours =
         hours % 12 || 12;
-
 
     document.getElementById(
         "currentTime"
@@ -2014,9 +1742,7 @@ function updateClock() {
 
 }
 
-
 updateClock();
-
 
 setInterval(
     updateClock,
@@ -2030,12 +1756,10 @@ setInterval(
 
 function updateOnline() {
 
-
     const count =
         Math.floor(
             Math.random() * 12
         ) + 35;
-
 
     document.getElementById(
         "onlineCount"
@@ -2044,13 +1768,139 @@ function updateOnline() {
 
 }
 
-
 updateOnline();
-
 
 setInterval(
     updateOnline,
     15000
+);
+
+
+/* =========================================================
+   IMPORTANT:
+   TITLE + MUSIC PLAYER MOVE ONLY 1PX
+   WHEN SCROLLING
+========================================================= */
+
+const fixedTitle =
+    document.querySelector(
+        ".title-container"
+    );
+
+const musicPlayer =
+    document.querySelector(
+        ".player"
+    );
+
+
+let lastScrollY =
+    window.scrollY;
+
+let titleOffset = 0;
+
+let playerOffset = 0;
+
+
+/* =========================================================
+   SCROLL EVENT
+========================================================= */
+
+window.addEventListener(
+    "scroll",
+    function() {
+
+        const currentScrollY =
+            window.scrollY;
+
+        const difference =
+            currentScrollY - lastScrollY;
+
+
+        /*
+           Scrolling DOWN
+           Move both elements 1px UP.
+        */
+
+        if (difference > 0) {
+
+            titleOffset = -1;
+
+            playerOffset = -1;
+
+        }
+
+
+        /*
+           Scrolling UP
+           Move both elements 1px DOWN.
+        */
+
+        else if (difference < 0) {
+
+            titleOffset = 1;
+
+            playerOffset = 1;
+
+        }
+
+
+        /*
+           Apply only 1px movement.
+        */
+
+        fixedTitle.style.transform =
+            `translateX(-50%) translateY(${titleOffset}px)`;
+
+
+        musicPlayer.style.transform =
+            `translateX(-50%) translateY(${playerOffset}px)`;
+
+
+        lastScrollY =
+            currentScrollY;
+
+    },
+
+    {
+        passive: true
+    }
+);
+
+
+/* =========================================================
+   RESET THE 1PX OFFSET AFTER SCROLL STOPS
+========================================================= */
+
+let scrollTimer;
+
+window.addEventListener(
+    "scroll",
+    function() {
+
+        clearTimeout(scrollTimer);
+
+        scrollTimer =
+            setTimeout(
+                function() {
+
+                    titleOffset = 0;
+
+                    playerOffset = 0;
+
+                    fixedTitle.style.transform =
+                        "translateX(-50%) translateY(0px)";
+
+                    musicPlayer.style.transform =
+                        "translateX(-50%) translateY(0px)";
+
+                },
+                120
+            );
+
+    },
+    {
+        passive: true
+    }
 );
 
 </script>
