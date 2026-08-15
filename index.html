@@ -29,68 +29,99 @@ rel="stylesheet"
     box-sizing: border-box;
 }
 
-html,
-body {
+html {
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    min-height: 100%;
+    scroll-behavior: smooth;
 }
 
 body {
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+
+    overflow-y: auto;
+
     font-family: Arial, sans-serif;
-    background: #111;
+
+    background: #15100c;
+
     color: white;
 }
 
 
 /* =====================================================
-   MAIN HERO / BACKGROUND
+   MAIN PAGE
 ===================================================== */
 
 .hero {
 
     position: relative;
 
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
 
-    background-image:
-        linear-gradient(
-            rgba(10, 7, 4, 0.05),
-            rgba(10, 7, 4, 0.28)
-        ),
-        url("bg.jpg");
+    /*
+       Extra height creates a proper scrollable website
+    */
 
-    background-size: cover;
-
-    background-position: center;
-
-    background-repeat: no-repeat;
+    min-height: 180vh;
 
     overflow: hidden;
 
-    animation:
-        backgroundZoom 20s
-        ease-in-out
-        infinite alternate;
-}
-
-
-@keyframes backgroundZoom {
-
-    from {
-        background-size: 100% auto;
-    }
-
-    to {
-        background-size: 104% auto;
-    }
-
+    isolation: isolate;
 }
 
 
 /* =====================================================
-   CINEMATIC VIGNETTE
+   FULL PAGE BACKGROUND
+===================================================== */
+
+.hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    z-index: -3;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    /*
+       Background stretches with the complete website
+    */
+
+    height: 100%;
+
+    background-image:
+        linear-gradient(
+            rgba(10, 7, 4, 0.04),
+            rgba(10, 7, 4, 0.32)
+        ),
+        url("bg.png");
+
+    background-size: cover;
+
+    background-position:
+        center top;
+
+    background-repeat: no-repeat;
+
+    /*
+       Makes the image cover the entire scrolling page
+    */
+
+    min-height: 100%;
+}
+
+
+/* =====================================================
+   DARK CINEMATIC VIGNETTE
 ===================================================== */
 
 .hero::before {
@@ -99,16 +130,16 @@ body {
 
     position: absolute;
 
+    z-index: -2;
+
     inset: 0;
 
     background:
         radial-gradient(
-            circle at center,
-            transparent 35%,
-            rgba(0,0,0,.28) 100%
+            ellipse at center top,
+            transparent 25%,
+            rgba(0,0,0,.22) 100%
         );
-
-    z-index: 1;
 
     pointer-events: none;
 }
@@ -122,12 +153,13 @@ body {
 
     position: absolute;
 
-    inset: -50%;
+    z-index: 30;
+
+    top: -50%;
+    left: -50%;
 
     width: 200%;
     height: 200%;
-
-    z-index: 30;
 
     opacity: .045;
 
@@ -137,9 +169,7 @@ body {
         url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
 
     animation:
-        grainMove .2s
-        steps(2)
-        infinite;
+        grainMove .2s steps(2) infinite;
 }
 
 
@@ -164,7 +194,6 @@ body {
     100% {
         transform: translate(-2%,-2%);
     }
-
 }
 
 
@@ -216,8 +245,7 @@ body {
 
     left: 50%;
 
-    transform:
-        translateX(-50%);
+    transform: translateX(-50%);
 
     display: flex;
 
@@ -266,7 +294,6 @@ body {
         opacity: 1;
         transform: scale(1);
     }
-
 }
 
 
@@ -307,8 +334,7 @@ body {
 
 .music-links a:hover {
 
-    transform:
-        translateY(-2px);
+    transform: translateY(-2px);
 
     opacity: .75;
 }
@@ -316,7 +342,6 @@ body {
 
 /* =====================================================
    RAJA HINDUSTANI TITLE
-   REFERENCE POSTER STYLE
 ===================================================== */
 
 .title-container {
@@ -331,22 +356,16 @@ body {
 
     width: 100%;
 
-    transform:
-        translateX(-50%);
+    transform: translateX(-50%);
 
     text-align: center;
 
     pointer-events: none;
 
     animation:
-        titleAppear 1.3s
-        ease-out;
+        titleAppear 1.3s ease-out;
 }
 
-
-/* =====================================================
-   MAIN TITLE
-===================================================== */
 
 .title {
 
@@ -367,19 +386,14 @@ body {
 
     margin: 0;
 
-    /* Main vintage poster shadow */
-
     text-shadow:
 
-        /* dark outline */
         2px 2px 0 #49351f,
 
         4px 4px 0 #49351f,
 
-        /* deep shadow */
         7px 7px 0 rgba(35,22,10,.55),
 
-        /* soft shadow */
         0 12px 25px rgba(0,0,0,.55);
 
     filter:
@@ -388,10 +402,6 @@ body {
         );
 }
 
-
-/* =====================================================
-   TITLE APPEAR
-===================================================== */
 
 @keyframes titleAppear {
 
@@ -414,7 +424,25 @@ body {
             translateY(0)
             scale(1);
     }
+}
 
+
+/* =====================================================
+   SPACER
+   Keeps content spread through the scrolling page
+===================================================== */
+
+.page-content {
+
+    position: relative;
+
+    z-index: 4;
+
+    width: 100%;
+
+    height: 180vh;
+
+    pointer-events: none;
 }
 
 
@@ -439,14 +467,14 @@ body {
 
 
 /* =====================================================
-   SMALL INDIAN TAXI MUSIC PLAYER
+   MUSIC PLAYER
 ===================================================== */
 
 .player {
 
-    position: absolute;
+    position: fixed;
 
-    z-index: 20;
+    z-index: 50;
 
     left: 50%;
 
@@ -464,8 +492,6 @@ body {
         9px 13px 9px 9px;
 
     border-radius: 18px;
-
-    /* Vintage Indian taxi glass */
 
     background:
         linear-gradient(
@@ -530,19 +556,15 @@ body {
         0 4px 12px rgba(0,0,0,.4);
 
     animation:
-        albumRotate 10s
-        linear
-        infinite;
+        albumRotate 10s linear infinite;
 
-    animation-play-state:
-        paused;
+    animation-play-state: paused;
 }
 
 
 .album.playing {
 
-    animation-play-state:
-        running;
+    animation-play-state: running;
 }
 
 
@@ -564,7 +586,6 @@ body {
     to {
         transform: rotate(360deg);
     }
-
 }
 
 
@@ -703,14 +724,9 @@ body {
 
 .control:hover {
 
-    transform:
-        scale(1.15);
+    transform: scale(1.15);
 }
 
-
-/* =====================================================
-   PLAY BUTTON
-===================================================== */
 
 .play-button {
 
@@ -727,8 +743,7 @@ body {
     font-size: 15px;
 
     box-shadow:
-        0 4px 12px
-        rgba(0,0,0,.3);
+        0 4px 12px rgba(0,0,0,.3);
 }
 
 
@@ -800,11 +815,9 @@ body {
 
         2px 2px 0 #49351f,
 
-        5px 5px 0
-        rgba(35,22,10,.6),
+        5px 5px 0 rgba(35,22,10,.6),
 
-        0 10px 25px
-        rgba(0,0,0,.55);
+        0 10px 25px rgba(0,0,0,.55);
 
     margin-bottom: 18px;
 }
@@ -855,23 +868,19 @@ body {
 
     color: #302312;
 
-    transform:
-        scale(1.05);
+    transform: scale(1.05);
 }
 
 
 @keyframes startFloat {
 
     from {
-        transform:
-            translateY(0);
+        transform: translateY(0);
     }
 
     to {
-        transform:
-            translateY(-8px);
+        transform: translateY(-8px);
     }
-
 }
 
 
@@ -923,19 +932,15 @@ body {
     border-radius: 50%;
 
     animation:
-        spin .8s
-        linear
-        infinite;
+        spin .8s linear infinite;
 }
 
 
 @keyframes spin {
 
     to {
-        transform:
-            rotate(360deg);
+        transform: rotate(360deg);
     }
-
 }
 
 
@@ -944,6 +949,10 @@ body {
 ===================================================== */
 
 @media (max-width: 650px) {
+
+    .hero {
+        min-height: 180vh;
+    }
 
 
     .top-bar {
@@ -956,33 +965,26 @@ body {
 
 
     .time {
-
         font-size: 13px;
     }
 
 
     .online {
-
         font-size: 11px;
     }
 
 
     .music-links {
-
         gap: 9px;
     }
 
 
     .music-links span {
-
         display: none;
     }
 
 
-    /* MOBILE TITLE */
-
     .title-container {
-
         top: 38px;
     }
 
@@ -999,15 +1001,11 @@ body {
 
             2px 2px 0 #49351f,
 
-            4px 4px 0
-            rgba(35,22,10,.6),
+            4px 4px 0 rgba(35,22,10,.6),
 
-            0 8px 18px
-            rgba(0,0,0,.55);
+            0 8px 18px rgba(0,0,0,.55);
     }
 
-
-    /* MOBILE PLAYER */
 
     .player {
 
@@ -1035,19 +1033,16 @@ body {
 
 
     .song-name {
-
         font-size: 12px;
     }
 
 
     .artist {
-
         font-size: 9px;
     }
 
 
     .controls {
-
         gap: 0;
     }
 
@@ -1077,7 +1072,7 @@ body {
 
 
 <!-- =====================================================
-     LOADING SCREEN
+     LOADING
 ===================================================== -->
 
 <div
@@ -1125,7 +1120,7 @@ id="startScreen"
 
 
 <!-- =====================================================
-     MAIN PAGE
+     MAIN WEBSITE
 ===================================================== -->
 
 <main class="hero">
@@ -1134,9 +1129,7 @@ id="startScreen"
     <div class="grain"></div>
 
 
-    <!-- =================================================
-         TOP BAR
-    ================================================== -->
+    <!-- TOP BAR -->
 
     <div class="top-bar">
 
@@ -1196,23 +1189,18 @@ id="startScreen"
 
             </a>
 
-
         </div>
 
     </div>
 
 
-    <!-- =================================================
-         RAJA HINDUSTANI TITLE
-    ================================================== -->
+    <!-- RAJA HINDUSTANI -->
 
     <div class="title-container">
 
         <h1 class="title">
 
-            राजा
-
-            <br>
+            राजा<br>
 
             हिन्दुस्तानी
 
@@ -1221,16 +1209,17 @@ id="startScreen"
     </div>
 
 
-    <!-- =================================================
-         HIDDEN YOUTUBE PLAYER
-    ================================================== -->
+    <!-- EXTRA PAGE HEIGHT -->
+
+    <div class="page-content"></div>
+
+
+    <!-- HIDDEN YOUTUBE -->
 
     <div id="youtube-player"></div>
 
 
-    <!-- =================================================
-         MUSIC PLAYER
-    ================================================== -->
+    <!-- MUSIC PLAYER -->
 
     <div class="player">
 
@@ -1242,7 +1231,7 @@ id="startScreen"
 
             <img
             id="albumImage"
-            src="bg.jpg"
+            src="bg.png"
             alt="Raja Hindustani"
             >
 
@@ -1275,8 +1264,8 @@ id="startScreen"
 
                 <div
                 class="progress"
-                id="progress"
-                ></div>
+                id="progress">
+                </div>
 
             </div>
 
@@ -1304,7 +1293,6 @@ id="startScreen"
             <button
             class="control"
             id="previous"
-            title="Previous"
             >
                 |◀
             </button>
@@ -1313,7 +1301,6 @@ id="startScreen"
             <button
             class="control play-button"
             id="playButton"
-            title="Play"
             >
                 ▶
             </button>
@@ -1322,11 +1309,9 @@ id="startScreen"
             <button
             class="control"
             id="next"
-            title="Next"
             >
                 ▶|
             </button>
-
 
         </div>
 
@@ -1336,18 +1321,16 @@ id="startScreen"
 
 
 <!-- =====================================================
-     YOUTUBE API
+     YOUTUBE
 ===================================================== -->
 
-<script
-src="https://www.youtube.com/iframe_api">
-</script>
+<script src="https://www.youtube.com/iframe_api"></script>
 
 
 <script>
 
 /* =====================================================
-   YOUTUBE PLAYLIST
+   PLAYLIST
 ===================================================== */
 
 const PLAYLIST_ID =
@@ -1409,14 +1392,12 @@ document.getElementById("loading");
 
 
 /* =====================================================
-   YOUTUBE API READY
+   YOUTUBE API
 ===================================================== */
 
 function onYouTubeIframeAPIReady() {
 
-
-    player =
-    new YT.Player(
+    player = new YT.Player(
         "youtube-player",
         {
 
@@ -1440,13 +1421,11 @@ function onYouTubeIframeAPIReady() {
 
                 playsinline: 1,
 
-                listType:
-                    "playlist",
+                listType: "playlist",
 
-                list:
-                    PLAYLIST_ID
+                list: PLAYLIST_ID
+
             },
-
 
             events: {
 
@@ -1458,17 +1437,15 @@ function onYouTubeIframeAPIReady() {
 
                 onError:
                     onPlayerError
-
             }
 
         }
     );
-
 }
 
 
 /* =====================================================
-   PLAYER READY
+   READY
 ===================================================== */
 
 function onPlayerReady() {
@@ -1481,16 +1458,14 @@ function onPlayerReady() {
         updateSongInformation,
         1000
     );
-
 }
 
 
 /* =====================================================
-   PLAYER STATE
+   STATE
 ===================================================== */
 
 function onPlayerStateChange(event) {
-
 
     if (
         event.data ===
@@ -1499,15 +1474,11 @@ function onPlayerStateChange(event) {
 
         isPlaying = true;
 
-        playButton.textContent =
-            "❚❚";
+        playButton.textContent = "❚❚";
 
-        album.classList.add(
-            "playing"
-        );
+        album.classList.add("playing");
 
         updateSongInformation();
-
     }
 
 
@@ -1518,13 +1489,9 @@ function onPlayerStateChange(event) {
 
         isPlaying = false;
 
-        playButton.textContent =
-            "▶";
+        playButton.textContent = "▶";
 
-        album.classList.remove(
-            "playing"
-        );
-
+        album.classList.remove("playing");
     }
 
 
@@ -1535,45 +1502,35 @@ function onPlayerStateChange(event) {
 
         isPlaying = false;
 
-        playButton.textContent =
-            "▶";
+        playButton.textContent = "▶";
 
-        album.classList.remove(
-            "playing"
-        );
-
+        album.classList.remove("playing");
     }
-
 }
 
 
 /* =====================================================
-   YOUTUBE ERROR
+   ERROR
 ===================================================== */
 
 function onPlayerError(event) {
 
     console.log(
-        "YouTube Player Error:",
+        "YouTube Error:",
         event.data
     );
-
 }
 
 
 /* =====================================================
-   ENTER WEBSITE + START MUSIC
+   ENTER
 ===================================================== */
 
 enterButton.addEventListener(
 "click",
 function() {
 
-
-    startScreen.classList.add(
-        "hidden"
-    );
-
+    startScreen.classList.add("hidden");
 
     if (
         playerReady &&
@@ -1584,13 +1541,9 @@ function() {
 
         isPlaying = true;
 
-        playButton.textContent =
-            "❚❚";
+        playButton.textContent = "❚❚";
 
-        album.classList.add(
-            "playing"
-        );
-
+        album.classList.add("playing");
     }
 
 });
@@ -1603,7 +1556,6 @@ function() {
 playButton.addEventListener(
 "click",
 function() {
-
 
     if (
         !playerReady ||
@@ -1629,13 +1581,12 @@ function() {
 
 
 /* =====================================================
-   NEXT SONG
+   NEXT
 ===================================================== */
 
 nextButton.addEventListener(
 "click",
 function() {
-
 
     if (
         !playerReady ||
@@ -1644,9 +1595,7 @@ function() {
         return;
     }
 
-
     player.nextVideo();
-
 
     setTimeout(
         updateSongInformation,
@@ -1657,13 +1606,12 @@ function() {
 
 
 /* =====================================================
-   PREVIOUS SONG
+   PREVIOUS
 ===================================================== */
 
 previousButton.addEventListener(
 "click",
 function() {
-
 
     if (
         !playerReady ||
@@ -1672,9 +1620,7 @@ function() {
         return;
     }
 
-
     player.previousVideo();
-
 
     setTimeout(
         updateSongInformation,
@@ -1690,7 +1636,6 @@ function() {
 
 function updateSongInformation() {
 
-
     if (
         !playerReady ||
         !player
@@ -1701,9 +1646,8 @@ function updateSongInformation() {
 
     try {
 
-
         const videoData =
-        player.getVideoData();
+            player.getVideoData();
 
 
         if (
@@ -1713,7 +1657,6 @@ function updateSongInformation() {
 
             songName.textContent =
                 videoData.title;
-
         }
 
 
@@ -1724,7 +1667,6 @@ function updateSongInformation() {
 
             artistName.textContent =
                 videoData.author;
-
         }
 
 
@@ -1734,8 +1676,7 @@ function updateSongInformation() {
         ) {
 
             albumImage.src =
-            `https://i.ytimg.com/vi/${videoData.video_id}/hqdefault.jpg`;
-
+                `https://i.ytimg.com/vi/${videoData.video_id}/hqdefault.jpg`;
         }
 
     }
@@ -1756,7 +1697,6 @@ function updateSongInformation() {
 setInterval(
 function() {
 
-
     if (
         !playerReady ||
         !player
@@ -1767,13 +1707,11 @@ function() {
 
     try {
 
-
         const total =
-        player.getDuration();
-
+            player.getDuration();
 
         const current =
-        player.getCurrentTime();
+            player.getCurrentTime();
 
 
         if (!total) {
@@ -1782,7 +1720,7 @@ function() {
 
 
         const percent =
-        (current / total) * 100;
+            (current / total) * 100;
 
 
         progress.style.width =
@@ -1796,7 +1734,6 @@ function() {
         duration.textContent =
             formatTime(total);
 
-
     }
 
     catch(error) {
@@ -1804,7 +1741,6 @@ function() {
         console.log(error);
 
     }
-
 
 },
 500
@@ -1819,7 +1755,6 @@ progressContainer.addEventListener(
 "click",
 function(event) {
 
-
     if (
         !playerReady ||
         !player
@@ -1829,15 +1764,15 @@ function(event) {
 
 
     const width =
-    progressContainer.clientWidth;
+        progressContainer.clientWidth;
 
 
     const position =
-    event.offsetX;
+        event.offsetX;
 
 
     const total =
-    player.getDuration();
+        player.getDuration();
 
 
     if (!total) {
@@ -1854,32 +1789,25 @@ function(event) {
 
 
 /* =====================================================
-   FORMAT TIME
+   TIME FORMAT
 ===================================================== */
 
 function formatTime(seconds) {
-
 
     if (
         !seconds ||
         isNaN(seconds)
     ) {
-
         return "0:00";
-
     }
 
 
     const minutes =
-    Math.floor(
-        seconds / 60
-    );
+        Math.floor(seconds / 60);
 
 
     const secondsLeft =
-    Math.floor(
-        seconds % 60
-    );
+        Math.floor(seconds % 60);
 
 
     return (
@@ -1888,7 +1816,6 @@ function formatTime(seconds) {
         String(secondsLeft)
         .padStart(2, "0")
     );
-
 }
 
 
@@ -1898,44 +1825,35 @@ function formatTime(seconds) {
 
 function updateClock() {
 
-
-    const now =
-    new Date();
-
+    const now = new Date();
 
     let hours =
-    now.getHours();
-
+        now.getHours();
 
     const minutes =
-    String(
-        now.getMinutes()
-    ).padStart(
-        2,
-        "0"
-    );
+        String(
+            now.getMinutes()
+        ).padStart(2, "0");
 
 
     const ampm =
-    hours >= 12
-        ? "pm"
-        : "am";
+        hours >= 12
+            ? "pm"
+            : "am";
 
 
     hours =
-    hours % 12 || 12;
+        hours % 12 || 12;
 
 
     document.getElementById(
         "currentTime"
     ).textContent =
         `${hours}:${minutes} ${ampm}`;
-
 }
 
 
 updateClock();
-
 
 setInterval(
     updateClock,
@@ -1949,23 +1867,20 @@ setInterval(
 
 function updateOnline() {
 
-
     const count =
-    Math.floor(
-        Math.random() * 12
-    ) + 35;
+        Math.floor(
+            Math.random() * 12
+        ) + 35;
 
 
     document.getElementById(
         "onlineCount"
     ).textContent =
         count;
-
 }
 
 
 updateOnline();
-
 
 setInterval(
     updateOnline,
