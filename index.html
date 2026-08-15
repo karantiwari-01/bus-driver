@@ -11,14 +11,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link
-href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@600;700;800;900&display=swap"
+href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@700;800;900&display=swap"
 rel="stylesheet"
 >
 
 <style>
 
 /* =========================================================
-   RESET — COMPLETELY NO SCROLL
+   RESET
 ========================================================= */
 
 * {
@@ -33,28 +33,22 @@ body {
     width: 100%;
     height: 100%;
 
-    min-height: 100%;
-
-    overflow: hidden;
+    overflow: hidden !important;
 
     position: fixed;
 
     inset: 0;
 
-    overscroll-behavior: none;
-
-    touch-action: none;
-
     background: #111;
 
-    color: white;
+    overscroll-behavior: none;
 
     font-family: Arial, sans-serif;
 }
 
 
 /* =========================================================
-   MAIN SCREEN
+   MAIN
 ========================================================= */
 
 .hero {
@@ -64,7 +58,6 @@ body {
     inset: 0;
 
     width: 100vw;
-
     height: 100vh;
 
     overflow: hidden;
@@ -74,28 +67,23 @@ body {
 
 
 /* =========================================================
-   FIXED BACKGROUND
+   BACKGROUND — NEVER MOVES
 ========================================================= */
 
-.hero::before {
-
-    content: "";
+.background {
 
     position: fixed;
 
     inset: 0;
 
     width: 100vw;
-
     height: 100vh;
 
     background-image:
-
         linear-gradient(
-            rgba(10, 7, 4, 0.04),
-            rgba(10, 7, 4, 0.20)
+            rgba(10, 5, 2, .08),
+            rgba(10, 5, 2, .18)
         ),
-
         url("bg.png");
 
     background-size: cover;
@@ -104,102 +92,44 @@ body {
 
     background-repeat: no-repeat;
 
-    z-index: -20;
+    z-index: -10;
 
     pointer-events: none;
 }
 
 
 /* =========================================================
-   VIGNETTE
+   DARK VIGNETTE
 ========================================================= */
 
-.hero::after {
-
-    content: "";
+.vignette {
 
     position: fixed;
 
     inset: 0;
 
-    width: 100vw;
-
-    height: 100vh;
+    pointer-events: none;
 
     background:
         radial-gradient(
             ellipse at center,
-            transparent 30%,
-            rgba(0,0,0,.24) 100%
+            transparent 35%,
+            rgba(0,0,0,.25) 100%
         );
 
-    z-index: -19;
-
-    pointer-events: none;
+    z-index: -5;
 }
 
 
 /* =========================================================
-   FILM GRAIN
-========================================================= */
-
-.grain {
-
-    position: fixed;
-
-    inset: -50%;
-
-    width: 200%;
-
-    height: 200%;
-
-    z-index: 40;
-
-    opacity: .035;
-
-    pointer-events: none;
-
-    background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
-
-    animation:
-        grainMove .2s steps(2) infinite;
-}
-
-
-@keyframes grainMove {
-
-    0% {
-        transform: translate(0,0);
-    }
-
-    25% {
-        transform: translate(2%,-1%);
-    }
-
-    50% {
-        transform: translate(-1%,2%);
-    }
-
-    75% {
-        transform: translate(1%,1%);
-    }
-
-    100% {
-        transform: translate(-2%,-2%);
-    }
-}
-
-
-/* =========================================================
-   TOP BAR — COMPLETELY FIXED
+   TOP BAR
 ========================================================= */
 
 .top-bar {
 
     position: fixed;
 
-    z-index: 30;
+    z-index: 20;
 
     top: 27px;
 
@@ -215,28 +145,22 @@ body {
 
     justify-content: space-between;
 
-    font-weight: 600;
+    color: white;
 
     pointer-events: none;
 }
 
 
-/* =========================================================
-   CLOCK
-========================================================= */
-
 .time {
 
     font-size: 16px;
 
+    font-weight: 600;
+
     text-shadow:
-        0 2px 10px rgba(0,0,0,.8);
+        0 2px 8px rgba(0,0,0,.8);
 }
 
-
-/* =========================================================
-   ONLINE
-========================================================= */
 
 .online {
 
@@ -254,54 +178,26 @@ body {
 
     font-size: 15px;
 
+    font-weight: 600;
+
     text-shadow:
-        0 2px 8px rgba(0,0,0,.7);
+        0 2px 8px rgba(0,0,0,.8);
 }
 
 
 .online-dot {
 
     width: 11px;
-
     height: 11px;
 
     border-radius: 50%;
 
-    background: #21e890;
+    background: #18e88a;
 
     box-shadow:
-
-        0 0 8px #21e890,
-
-        0 0 18px rgba(33,232,144,.55);
-
-    animation:
-        onlinePulse 2s infinite;
+        0 0 10px #18e88a;
 }
 
-
-@keyframes onlinePulse {
-
-    0% {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    50% {
-        opacity: .55;
-        transform: scale(.8);
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-
-/* =========================================================
-   MUSIC LINKS
-========================================================= */
 
 .music-links {
 
@@ -309,7 +205,7 @@ body {
 
     align-items: center;
 
-    gap: 24px;
+    gap: 25px;
 
     pointer-events: auto;
 }
@@ -321,53 +217,64 @@ body {
 
     text-decoration: none;
 
+    font-size: 14px;
+
+    font-weight: 600;
+
     display: flex;
 
     align-items: center;
 
     gap: 7px;
 
-    font-size: 14px;
-
     text-shadow:
-        0 2px 8px rgba(0,0,0,.7);
+        0 2px 8px rgba(0,0,0,.8);
 
-    transition: .25s ease;
+    transition: .2s;
 }
 
 
 .music-links a:hover {
 
-    transform: translateY(-2px);
+    opacity: .7;
 
-    opacity: .75;
 }
 
 
 /* =========================================================
-   RAJA HINDUSTANI
-   COMPLETELY FIXED
+   TITLE WRAPPER
 ========================================================= */
 
 .title-container {
 
     position: fixed;
 
-    z-index: 25;
+    z-index: 15;
 
-    top: 42px;
+    top: 43px;
 
     left: 50%;
 
     width: 100%;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%)
+        translateY(0)
+        scaleY(1);
 
-    text-align: center;
+    transform-origin: center center;
+
+    will-change:
+        transform;
 
     pointer-events: none;
+
 }
 
+
+/* =========================================================
+   RAJA HINDUSTANI
+========================================================= */
 
 .title {
 
@@ -384,29 +291,25 @@ body {
 
     letter-spacing: -5px;
 
-    color: #fff3d2;
+    text-align: center;
 
-    margin: 0;
+    color: #fff4d5;
 
     text-shadow:
 
-        2px 2px 0 #49351f,
+        2px 2px 0 #4b351e,
 
-        4px 4px 0 #49351f,
+        5px 5px 0 #4b351e,
 
-        7px 7px 0 rgba(35,22,10,.55),
+        8px 8px 0 rgba(0,0,0,.45),
 
-        0 12px 25px rgba(0,0,0,.55);
+        0 12px 25px rgba(0,0,0,.5);
 
-    filter:
-        drop-shadow(
-            0 5px 5px rgba(0,0,0,.35)
-        );
 }
 
 
 /* =========================================================
-   HIDDEN YOUTUBE PLAYER
+   YOUTUBE PLAYER — HIDDEN
 ========================================================= */
 
 #youtube-player {
@@ -414,11 +317,9 @@ body {
     position: fixed;
 
     width: 1px;
-
     height: 1px;
 
     left: -100px;
-
     top: -100px;
 
     opacity: 0;
@@ -429,76 +330,76 @@ body {
 
 /* =========================================================
    MUSIC PLAYER
-   COMPLETELY FIXED
 ========================================================= */
 
 .player {
 
     position: fixed;
 
-    z-index: 50;
+    z-index: 30;
 
     left: 50%;
 
     bottom: 55px;
 
-    transform: translateX(-50%);
-
     width:
-        min(500px, calc(100% - 30px));
+        min(670px, calc(100% - 30px));
 
-    min-height: 78px;
+    min-height: 92px;
 
-    padding:
-        9px 13px 9px 9px;
+    transform:
+        translateX(-50%)
+        translateY(0)
+        scaleY(1);
 
-    border-radius: 18px;
+    transform-origin: center center;
 
-
-    /* =====================================================
-       TRANSPARENT VINTAGE TAXI COLOR
-    ===================================================== */
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(119, 72, 35, 0.62),
-            rgba(54, 35, 20, 0.58),
-            rgba(128, 82, 39, 0.52)
-        );
-
-
-    border:
-        1px solid
-        rgba(255, 220, 160, 0.30);
-
-
-    box-shadow:
-
-        0 10px 30px
-        rgba(0, 0, 0, 0.38),
-
-        inset 0 1px 1px
-        rgba(255, 240, 210, 0.16),
-
-        inset 0 -1px 2px
-        rgba(0, 0, 0, 0.18);
-
-
-    backdrop-filter:
-        blur(8px)
-        saturate(115%);
-
-    -webkit-backdrop-filter:
-        blur(8px)
-        saturate(115%);
-
+    will-change:
+        transform;
 
     display: flex;
 
     align-items: center;
 
-    gap: 11px;
+    gap: 12px;
+
+    padding: 10px 14px 10px 10px;
+
+    border-radius: 24px;
+
+
+    /* Transparent color taken from the warm background */
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(82,52,32,.66),
+            rgba(135,65,42,.63),
+            rgba(176,70,49,.58)
+        );
+
+
+    border:
+        1px solid
+        rgba(255,220,180,.28);
+
+
+    box-shadow:
+
+        0 12px 35px
+        rgba(0,0,0,.35),
+
+        inset 0 1px 1px
+        rgba(255,255,255,.16);
+
+
+    backdrop-filter:
+        blur(8px)
+        saturate(120%);
+
+    -webkit-backdrop-filter:
+        blur(8px)
+        saturate(120%);
 }
 
 
@@ -508,57 +409,31 @@ body {
 
 .album {
 
-    width: 58px;
+    width: 68px;
 
-    height: 58px;
+    height: 68px;
 
     flex-shrink: 0;
 
-    border-radius: 10px;
-
     overflow: hidden;
+
+    border-radius: 50%;
 
     border:
         2px solid
-        rgba(255,255,255,.55);
+        rgba(255,255,255,.35);
 
     box-shadow:
-        0 4px 12px rgba(0,0,0,.4);
-
-    animation:
-        albumRotate 10s linear infinite;
-
-    animation-play-state:
-        paused;
-}
-
-
-.album.playing {
-
-    animation-play-state:
-        running;
+        0 4px 15px rgba(0,0,0,.4);
 }
 
 
 .album img {
 
     width: 100%;
-
     height: 100%;
 
     object-fit: cover;
-}
-
-
-@keyframes albumRotate {
-
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
 }
 
 
@@ -576,7 +451,7 @@ body {
 
 .song-name {
 
-    font-size: 14px;
+    font-size: 15px;
 
     font-weight: 700;
 
@@ -586,23 +461,23 @@ body {
 
     text-overflow: ellipsis;
 
-    margin-bottom: 3px;
+    margin-bottom: 4px;
 }
 
 
 .artist {
 
-    font-size: 11px;
+    font-size: 12px;
 
-    opacity: .75;
+    opacity: .72;
+
+    margin-bottom: 8px;
 
     white-space: nowrap;
 
     overflow: hidden;
 
     text-overflow: ellipsis;
-
-    margin-bottom: 6px;
 }
 
 
@@ -614,16 +489,16 @@ body {
 
     width: 100%;
 
-    height: 3px;
-
-    border-radius: 10px;
+    height: 4px;
 
     background:
         rgba(255,255,255,.25);
 
-    cursor: pointer;
+    border-radius: 20px;
 
     overflow: hidden;
+
+    cursor: pointer;
 }
 
 
@@ -635,20 +510,13 @@ body {
 
     background: white;
 
-    border-radius: 10px;
-
-    transition:
-        width .2s linear;
+    border-radius: 20px;
 }
 
 
-/* =========================================================
-   TIME
-========================================================= */
-
 .time-display {
 
-    margin-top: 3px;
+    margin-top: 4px;
 
     font-size: 9px;
 
@@ -672,9 +540,9 @@ body {
 
 .control {
 
-    width: 27px;
+    width: 30px;
 
-    height: 32px;
+    height: 40px;
 
     border: none;
 
@@ -684,83 +552,60 @@ body {
 
     cursor: pointer;
 
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
     font-size: 13px;
-
-    transition: .2s;
 }
 
-
-.control:hover {
-
-    transform: scale(1.15);
-}
-
-
-/* =========================================================
-   PLAY BUTTON
-========================================================= */
 
 .play-button {
 
-    width: 42px;
+    width: 52px;
 
-    height: 42px;
+    height: 52px;
 
     border-radius: 50%;
 
-    background:
-        rgba(255,255,255,.95);
+    background: rgba(255,255,255,.96);
 
-    color: #3d2c12;
+    color: #3e2818;
 
-    font-size: 15px;
+    font-size: 18px;
 
     box-shadow:
-        0 4px 12px rgba(0,0,0,.3);
+        0 4px 15px rgba(0,0,0,.25);
 }
 
 
 /* =========================================================
-   ENTER SCREEN
+   START SCREEN
 ========================================================= */
 
 .start-screen {
 
     position: fixed;
 
-    z-index: 100;
-
     inset: 0;
+
+    z-index: 100;
 
     display: flex;
 
-    justify-content: center;
-
     align-items: center;
 
-    background:
-        rgba(12,8,5,.68);
+    justify-content: center;
 
-    backdrop-filter:
-        blur(10px);
+    background:
+        rgba(15,8,4,.65);
+
+    backdrop-filter: blur(10px);
 
     transition:
-        opacity .7s ease,
-        visibility .7s ease;
+        opacity .7s ease;
 }
 
 
 .start-screen.hidden {
 
     opacity: 0;
-
-    visibility: hidden;
 
     pointer-events: none;
 }
@@ -769,6 +614,8 @@ body {
 .start-content {
 
     text-align: center;
+
+    color: white;
 }
 
 
@@ -779,60 +626,53 @@ body {
         serif;
 
     font-size:
-        clamp(45px, 7vw, 85px);
+        clamp(50px,7vw,90px);
 
-    line-height: .95;
+    line-height: .9;
 
-    color: #fff3d2;
+    color: #fff2d0;
 
     text-shadow:
 
-        2px 2px 0 #49351f,
+        3px 3px 0 #49341f,
 
-        5px 5px 0 rgba(35,22,10,.6),
+        6px 6px 0 rgba(0,0,0,.5);
 
-        0 10px 25px rgba(0,0,0,.55);
-
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
 
 .start-content p {
 
+    opacity: .75;
+
     font-size: 14px;
 
-    opacity: .72;
-
-    margin-bottom: 28px;
+    margin-bottom: 25px;
 }
 
 
 .enter-button {
 
+    padding:
+        14px 30px;
+
     border:
         1px solid
-        rgba(255,255,255,.5);
+        rgba(255,255,255,.45);
+
+    border-radius: 40px;
 
     color: white;
 
     background:
         rgba(255,255,255,.12);
 
-    padding:
-        14px 32px;
-
-    border-radius: 40px;
-
-    font-size: 13px;
+    cursor: pointer;
 
     font-weight: 700;
 
-    cursor: pointer;
-
-    backdrop-filter:
-        blur(10px);
-
-    transition: .3s;
+    transition: .25s;
 }
 
 
@@ -840,9 +680,8 @@ body {
 
     background: white;
 
-    color: #302312;
+    color: #352416;
 
-    transform: scale(1.05);
 }
 
 
@@ -850,7 +689,7 @@ body {
    MOBILE
 ========================================================= */
 
-@media (max-width: 650px) {
+@media(max-width:650px) {
 
     .top-bar {
 
@@ -859,120 +698,90 @@ body {
         left: 17px;
 
         right: 17px;
-    }
 
-
-    .time {
-
-        font-size: 13px;
-    }
-
-
-    .online {
-
-        font-size: 11px;
     }
 
 
     .music-links {
 
-        gap: 9px;
+        gap: 10px;
+
     }
 
 
     .music-links span {
 
         display: none;
+
     }
 
 
     .title-container {
 
-        top: 38px;
+        top: 42px;
+
     }
 
 
     .title {
 
-        font-size: 62px;
-
-        line-height: .94;
+        font-size: 61px;
 
         letter-spacing: -3px;
 
-        text-shadow:
-
-            2px 2px 0 #49351f,
-
-            4px 4px 0 rgba(35,22,10,.6),
-
-            0 8px 18px rgba(0,0,0,.55);
     }
 
 
     .player {
 
         width:
-            calc(100% - 24px);
+            calc(100% - 20px);
 
         bottom: 25px;
 
-        min-height: 68px;
+        min-height: 70px;
 
-        padding:
-            7px 9px 7px 7px;
+        border-radius: 18px;
 
-        border-radius: 15px;
+        padding: 7px;
 
-        gap: 8px;
     }
 
 
     .album {
 
-        width: 50px;
+        width: 52px;
 
-        height: 50px;
+        height: 52px;
+
     }
 
 
     .song-name {
 
         font-size: 12px;
+
     }
 
 
     .artist {
 
         font-size: 9px;
-    }
 
-
-    .controls {
-
-        gap: 0;
-    }
-
-
-    .control {
-
-        width: 24px;
-
-        height: 28px;
     }
 
 
     .play-button {
 
-        width: 38px;
+        width: 42px;
 
-        height: 38px;
+        height: 42px;
+
     }
 
 }
 
 </style>
-
 </head>
 
 
@@ -980,7 +789,16 @@ body {
 
 
 <!-- =========================================================
-     ENTER EXPERIENCE
+     FIXED BACKGROUND
+========================================================= -->
+
+<div class="background"></div>
+
+<div class="vignette"></div>
+
+
+<!-- =========================================================
+     START SCREEN
 ========================================================= -->
 
 <div
@@ -1013,13 +831,10 @@ id="startScreen"
 
 
 <!-- =========================================================
-     MAIN SCREEN
+     MAIN
 ========================================================= -->
 
 <main class="hero">
-
-
-    <div class="grain"></div>
 
 
     <!-- =====================================================
@@ -1033,7 +848,7 @@ id="startScreen"
         class="time"
         id="currentTime"
         >
-            2:59 pm
+            4:40 pm
         </div>
 
 
@@ -1044,7 +859,7 @@ id="startScreen"
             <span>
 
                 <span id="onlineCount">
-                    39
+                    24
                 </span>
 
                 online
@@ -1056,18 +871,12 @@ id="startScreen"
 
         <div class="music-links">
 
-
             <a
             href="https://open.spotify.com/"
             target="_blank"
             >
-
                 ◉
-
-                <span>
-                    Spotify ↗
-                </span>
-
+                <span>Spotify ↗</span>
             </a>
 
 
@@ -1075,13 +884,8 @@ id="startScreen"
             href="https://music.youtube.com/"
             target="_blank"
             >
-
                 ▶
-
-                <span>
-                    YT Music ↗
-                </span>
-
+                <span>YT Music ↗</span>
             </a>
 
         </div>
@@ -1090,10 +894,13 @@ id="startScreen"
 
 
     <!-- =====================================================
-         FIXED TITLE
+         TITLE
     ====================================================== -->
 
-    <div class="title-container">
+    <div
+    class="title-container"
+    id="titleContainer"
+    >
 
         <h1 class="title">
 
@@ -1109,23 +916,23 @@ id="startScreen"
 
 
     <!-- =====================================================
-         HIDDEN YOUTUBE PLAYER
+         YOUTUBE
     ====================================================== -->
 
     <div id="youtube-player"></div>
 
 
     <!-- =====================================================
-         FIXED MUSIC PLAYER
+         MUSIC PLAYER
     ====================================================== -->
 
-    <div class="player">
+    <div
+    class="player"
+    id="musicPlayer"
+    >
 
 
-        <div
-        class="album"
-        id="album"
-        >
+        <div class="album">
 
             <img
             id="albumImage"
@@ -1191,16 +998,14 @@ id="startScreen"
             <button
             class="control"
             id="previous"
-            title="Previous"
             >
                 |◀
             </button>
 
 
             <button
-            class="control play-button"
+            class="play-button"
             id="playButton"
-            title="Play / Pause"
             >
                 ▶
             </button>
@@ -1209,7 +1014,6 @@ id="startScreen"
             <button
             class="control"
             id="next"
-            title="Next"
             >
                 ▶|
             </button>
@@ -1258,14 +1062,17 @@ document.getElementById("enterButton");
 const playButton =
 document.getElementById("playButton");
 
-const previousButton =
+const previous =
 document.getElementById("previous");
 
-const nextButton =
+const next =
 document.getElementById("next");
 
-const album =
-document.getElementById("album");
+const titleContainer =
+document.getElementById("titleContainer");
+
+const musicPlayer =
+document.getElementById("musicPlayer");
 
 const albumImage =
 document.getElementById("albumImage");
@@ -1290,70 +1097,265 @@ document.getElementById("duration");
 
 
 /* =========================================================
-   YOUTUBE API
+   =========================================================
+   STRETCH EFFECT
+   =========================================================
 ========================================================= */
 
-function onYouTubeIframeAPIReady() {
 
-    player = new YT.Player(
-        "youtube-player",
-        {
+/*
 
-            width: "1",
+   This is the important part.
 
-            height: "1",
+   Mouse wheel UP:
+       elements stretch upward.
 
-            playerVars: {
+   Mouse wheel DOWN:
+       elements stretch downward.
 
-                autoplay: 0,
+   When wheel stops:
+       they smoothly return to original position.
 
-                controls: 0,
+*/
 
-                disablekb: 1,
 
-                fs: 0,
+let stretch = 0;
 
-                modestbranding: 1,
+let targetStretch = 0;
 
-                rel: 0,
+let lastWheelTime = 0;
 
-                playsinline: 1,
 
-                listType: "playlist",
+/* Maximum movement */
 
-                list: PLAYLIST_ID
+const MAX_STRETCH = 85;
 
-            },
 
-            events: {
+/* How strongly wheel moves the design */
 
-                onReady: onPlayerReady,
+const WHEEL_POWER = 0.45;
 
-                onStateChange:
-                    onPlayerStateChange,
 
-                onError: onPlayerError
+/* =========================================================
+   MOUSE WHEEL
+========================================================= */
 
-            }
+window.addEventListener(
+    "wheel",
+    function(event) {
 
-        }
+        /*
+           Prevent actual page scrolling.
+        */
+
+        event.preventDefault();
+
+
+        /*
+           deltaY:
+
+           negative = scroll UP
+           positive = scroll DOWN
+        */
+
+
+        targetStretch +=
+            event.deltaY * WHEEL_POWER;
+
+
+        /*
+           Limit movement.
+        */
+
+        targetStretch =
+            Math.max(
+                -MAX_STRETCH,
+                Math.min(
+                    MAX_STRETCH,
+                    targetStretch
+                )
+            );
+
+
+        lastWheelTime =
+            performance.now();
+
+    },
+    {
+        passive: false
+    }
+);
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+function animateStretch(time) {
+
+
+    /*
+       If mouse wheel hasn't been used
+       for a short moment, return to center.
+    */
+
+    if (
+        time - lastWheelTime > 55
+    ) {
+
+        targetStretch *= 0.82;
+
+    }
+
+
+    /*
+       Smooth movement.
+    */
+
+    stretch +=
+        (targetStretch - stretch) * 0.16;
+
+
+    /*
+       If very close to center,
+       force zero.
+    */
+
+    if (
+        Math.abs(stretch) < 0.05 &&
+        Math.abs(targetStretch) < 0.05
+    ) {
+
+        stretch = 0;
+
+        targetStretch = 0;
+
+    }
+
+
+    /*
+       Direction:
+
+       negative = UP
+       positive = DOWN
+    */
+
+
+    const direction =
+        stretch < 0
+            ? -1
+            : 1;
+
+
+    const distance =
+        Math.abs(stretch);
+
+
+    /*
+       Stretch amount.
+
+       The further you scroll,
+       the taller the stretch becomes.
+    */
+
+    const scale =
+        1 + distance * 0.0025;
+
+
+    /* =====================================================
+       TITLE
+    ===================================================== */
+
+    titleContainer.style.transform =
+
+        `translateX(-50%)
+         translateY(${stretch}px)
+         scaleY(${scale})`;
+
+
+    /* =====================================================
+       MUSIC PLAYER
+    ===================================================== */
+
+    musicPlayer.style.transform =
+
+        `translateX(-50%)
+         translateY(${stretch * 0.72}px)
+         scaleY(${1 + distance * 0.0018})`;
+
+
+    requestAnimationFrame(
+        animateStretch
     );
 
 }
 
 
+requestAnimationFrame(
+    animateStretch
+);
+
+
 /* =========================================================
-   READY
+   YOUTUBE
+========================================================= */
+
+function onYouTubeIframeAPIReady() {
+
+    player =
+        new YT.Player(
+            "youtube-player",
+            {
+
+                width: "1",
+
+                height: "1",
+
+                playerVars: {
+
+                    autoplay: 0,
+
+                    controls: 0,
+
+                    disablekb: 1,
+
+                    fs: 0,
+
+                    modestbranding: 1,
+
+                    rel: 0,
+
+                    playsinline: 1,
+
+                    listType: "playlist",
+
+                    list: PLAYLIST_ID
+
+                },
+
+                events: {
+
+                    onReady:
+                        onPlayerReady,
+
+                    onStateChange:
+                        onPlayerStateChange
+
+                }
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   PLAYER READY
 ========================================================= */
 
 function onPlayerReady() {
 
     playerReady = true;
-
-    setTimeout(
-        updateSongInformation,
-        1000
-    );
 
 }
 
@@ -1374,13 +1376,10 @@ function onPlayerStateChange(event) {
         playButton.textContent =
             "❚❚";
 
-        album.classList.add(
-            "playing"
-        );
-
         updateSongInformation();
 
     }
+
 
     else if (
         event.data ===
@@ -1392,47 +1391,13 @@ function onPlayerStateChange(event) {
         playButton.textContent =
             "▶";
 
-        album.classList.remove(
-            "playing"
-        );
-
-    }
-
-    else if (
-        event.data ===
-        YT.PlayerState.ENDED
-    ) {
-
-        isPlaying = false;
-
-        playButton.textContent =
-            "▶";
-
-        album.classList.remove(
-            "playing"
-        );
-
     }
 
 }
 
 
 /* =========================================================
-   ERROR
-========================================================= */
-
-function onPlayerError(event) {
-
-    console.log(
-        "YouTube Error:",
-        event.data
-    );
-
-}
-
-
-/* =========================================================
-   ENTER EXPERIENCE
+   ENTER
 ========================================================= */
 
 enterButton.addEventListener(
@@ -1443,21 +1408,12 @@ enterButton.addEventListener(
             "hidden"
         );
 
+
         if (
-            playerReady &&
-            player
+            playerReady
         ) {
 
             player.playVideo();
-
-            isPlaying = true;
-
-            playButton.textContent =
-                "❚❚";
-
-            album.classList.add(
-                "playing"
-            );
 
         }
 
@@ -1474,15 +1430,17 @@ playButton.addEventListener(
     function() {
 
         if (
-            !playerReady ||
-            !player
+            !playerReady
         ) {
 
             return;
 
         }
 
-        if (isPlaying) {
+
+        if (
+            isPlaying
+        ) {
 
             player.pauseVideo();
 
@@ -1502,20 +1460,15 @@ playButton.addEventListener(
    NEXT
 ========================================================= */
 
-nextButton.addEventListener(
+next.addEventListener(
     "click",
     function() {
 
-        if (
-            !playerReady ||
-            !player
-        ) {
+        if (playerReady) {
 
-            return;
+            player.nextVideo();
 
         }
-
-        player.nextVideo();
 
     }
 );
@@ -1525,27 +1478,22 @@ nextButton.addEventListener(
    PREVIOUS
 ========================================================= */
 
-previousButton.addEventListener(
+previous.addEventListener(
     "click",
     function() {
 
-        if (
-            !playerReady ||
-            !player
-        ) {
+        if (playerReady) {
 
-            return;
+            player.previousVideo();
 
         }
-
-        player.previousVideo();
 
     }
 );
 
 
 /* =========================================================
-   SONG INFORMATION
+   SONG INFO
 ========================================================= */
 
 function updateSongInformation() {
@@ -1559,38 +1507,42 @@ function updateSongInformation() {
 
     }
 
+
     try {
 
-        const videoData =
+        const data =
             player.getVideoData();
 
+
         if (
-            videoData &&
-            videoData.title
+            data &&
+            data.title
         ) {
 
             songName.textContent =
-                videoData.title;
+                data.title;
 
         }
 
+
         if (
-            videoData &&
-            videoData.author
+            data &&
+            data.author
         ) {
 
             artistName.textContent =
-                videoData.author;
+                data.author;
 
         }
 
+
         if (
-            videoData &&
-            videoData.video_id
+            data &&
+            data.video_id
         ) {
 
             albumImage.src =
-                `https://i.ytimg.com/vi/${videoData.video_id}/hqdefault.jpg`;
+                `https://i.ytimg.com/vi/${data.video_id}/hqdefault.jpg`;
 
         }
 
@@ -1621,13 +1573,16 @@ setInterval(
 
         }
 
+
         try {
 
             const total =
                 player.getDuration();
 
+
             const current =
                 player.getCurrentTime();
+
 
             if (!total) {
 
@@ -1635,25 +1590,25 @@ setInterval(
 
             }
 
+
             const percent =
                 (current / total) * 100;
+
 
             progress.style.width =
                 percent + "%";
 
+
             currentSongTime.textContent =
                 formatTime(current);
+
 
             duration.textContent =
                 formatTime(total);
 
         }
 
-        catch(error) {
-
-            console.log(error);
-
-        }
+        catch(error) {}
 
     },
     500
@@ -1677,14 +1632,18 @@ progressContainer.addEventListener(
 
         }
 
+
         const width =
             progressContainer.clientWidth;
+
 
         const position =
             event.offsetX;
 
+
         const total =
             player.getDuration();
+
 
         if (!total) {
 
@@ -1692,8 +1651,9 @@ progressContainer.addEventListener(
 
         }
 
+
         player.seekTo(
-            (position / width) * total,
+            position / width * total,
             true
         );
 
@@ -1716,16 +1676,19 @@ function formatTime(seconds) {
 
     }
 
+
     const minutes =
         Math.floor(seconds / 60);
 
-    const secondsLeft =
+
+    const secs =
         Math.floor(seconds % 60);
+
 
     return (
         minutes +
         ":" +
-        String(secondsLeft)
+        String(secs)
             .padStart(2, "0")
     );
 
@@ -1741,21 +1704,26 @@ function updateClock() {
     const now =
         new Date();
 
+
     let hours =
         now.getHours();
+
 
     const minutes =
         String(
             now.getMinutes()
         ).padStart(2, "0");
 
+
     const ampm =
         hours >= 12
             ? "pm"
             : "am";
 
+
     hours =
         hours % 12 || 12;
+
 
     document.getElementById(
         "currentTime"
@@ -1764,7 +1732,9 @@ function updateClock() {
 
 }
 
+
 updateClock();
+
 
 setInterval(
     updateClock,
@@ -1780,8 +1750,9 @@ function updateOnline() {
 
     const count =
         Math.floor(
-            Math.random() * 12
-        ) + 35;
+            Math.random() * 8
+        ) + 20;
+
 
     document.getElementById(
         "onlineCount"
@@ -1790,7 +1761,9 @@ function updateOnline() {
 
 }
 
+
 updateOnline();
+
 
 setInterval(
     updateOnline,
@@ -1799,34 +1772,8 @@ setInterval(
 
 
 /* =========================================================
-   NO SCROLL
+   PREVENT TOUCH SCROLL
 ========================================================= */
-
-/*
-   The website is intentionally locked.
-
-   There is:
-   - NO vertical scrolling
-   - NO horizontal scrolling
-   - NO scroll movement
-   - NO scrollbar
-   - Background stays fixed
-   - Title stays fixed
-   - Music player stays fixed
-*/
-
-document.addEventListener(
-    "wheel",
-    function(event) {
-
-        event.preventDefault();
-
-    },
-    {
-        passive: false
-    }
-);
-
 
 document.addEventListener(
     "touchmove",
@@ -1841,7 +1788,9 @@ document.addEventListener(
 );
 
 
-/* Prevent keyboard scrolling */
+/* =========================================================
+   PREVENT KEYBOARD SCROLL
+========================================================= */
 
 window.addEventListener(
     "keydown",
@@ -1857,6 +1806,7 @@ window.addEventListener(
             " "
         ];
 
+
         if (
             keys.includes(
                 event.key
@@ -1868,6 +1818,16 @@ window.addEventListener(
         }
 
     }
+);
+
+
+/* =========================================================
+   ALWAYS STAY AT SCROLL TOP
+========================================================= */
+
+window.scrollTo(
+    0,
+    0
 );
 
 </script>
